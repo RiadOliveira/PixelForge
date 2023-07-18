@@ -2,12 +2,10 @@ import { useCallback, useRef } from 'react';
 import { Container } from './styles';
 import { convertFileToCanvasImage } from 'utils/convertFileToCanvasImage';
 import { FiPlus } from 'react-icons/fi';
+import { useImages } from 'hooks/images';
 
-interface ImagesInputProps {
-  setImages: React.Dispatch<React.SetStateAction<HTMLCanvasElement[]>>;
-}
-
-export const ImagesInput = ({ setImages }: ImagesInputProps) => {
+export const ImagesInput = () => {
+  const { updateImages } = useImages();
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleImagesInput = useCallback(
@@ -17,9 +15,9 @@ export const ImagesInput = ({ setImages }: ImagesInputProps) => {
       const imagesPromises = Array.from(files).map(convertFileToCanvasImage);
       const parsedImages = await Promise.all(imagesPromises);
 
-      setImages(previousImages => [...previousImages, ...parsedImages]);
+      updateImages(parsedImages);
     },
-    [setImages],
+    [updateImages],
   );
 
   return (

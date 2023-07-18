@@ -12,7 +12,7 @@ export const Container = styled.button<ContainerProps>`
   align-items: center;
 
   position: relative;
-  transition: 0.3s;
+  transition: 0.4s;
 
   canvas {
     z-index: 1;

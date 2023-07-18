@@ -15,6 +15,7 @@ export const CanvasImage = ({
   selectionPosition,
   toggleSelectImage,
   someImageSelected,
+  ...props
 }: CanvasImageProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const selected = selectionPosition !== -1;
@@ -42,6 +43,7 @@ export const CanvasImage = ({
         width: element.width,
         height: element.height + (selected ? 30 : 0),
       }}
+      {...props}
     >
       <canvas ref={canvasRef} />
       {selected && <span>{portugueseText} selecionada</span>}
