@@ -1,31 +1,41 @@
 import { useCallback, useState } from 'react';
 import { Container } from './styles';
-import { Canvas } from 'components/Canvas';
-import { convertFileToCanvasImage } from 'utils/convertFileToCanvasImage';
+import { CanvasImage } from 'components/CanvasImage';
+import { ImagesInput } from 'components/ImagesInput';
 
 export const Home = () => {
-  const [inputedImages, setInputedImages] = useState<HTMLCanvasElement[]>([]);
+  const [images, setImages] = useState<HTMLCanvasElement[]>([]);
+  const [selectedImagesIndexes, setSelectedImagesIndexes] = useState<number[]>(
+    [],
+  );
 
-  const handleImagesInput = useCallback(async (files: FileList | null) => {
-    if (files === null) return;
+  const toggleSelectImage = useCallback(
+    (imageIndex: number, selected: boolean) => {
+      if (!selected && selectedImagesIndexes.length === 2) {
+        alert('Limite de imagens selecionadas!');
+        return;
+      }
 
-    const imagesPromises = Array.from(files).map(convertFileToCanvasImage);
-    const parsedImages = await Promise.all(imagesPromises);
-
-    setInputedImages(previousImages => [...previousImages, ...parsedImages]);
-  }, []);
+      setSelectedImagesIndexes(previousIndexes => {
+        if (!selected) return [...previousIndexes, imageIndex];
+        return previousIndexes.filter(index => index !== imageIndex);
+      });
+    },
+    [selectedImagesIndexes.length],
+  );
 
   return (
     <Container>
-      <input
-        type="file"
-        accept=".jpeg, .jpg, .bmp, .png, .gif, .tiff, .pgm"
-        multiple
-        onChange={({ target: { files } }) => handleImagesInput(files)}
-      />
+      <ImagesInput setImages={setImages} />
 
-      {inputedImages.map((image, index) => (
-        <Canvas key={index} element={image} />
+      {images.map((image, index) => (
+        <CanvasImage
+          key={index}
+          element={image}
+          selectionPosition={selectedImagesIndexes.indexOf(index)}
+          toggleSelectImage={selected => toggleSelectImage(index, selected)}
+          someImageSelected={selectedImagesIndexes.length > 0}
+        />
       ))}
     </Container>
   );
