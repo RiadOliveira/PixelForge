@@ -2,12 +2,6 @@ import { Operations } from 'components/Operations';
 import { Container, OperationsContainer } from './styles';
 import { OperationInput } from 'components/Operations/OperationInput';
 import { useImages } from 'hooks/images';
-import {
-  addition,
-  division,
-  multiplication,
-  subtraction,
-} from 'operations/arithmetic';
 
 export const OperationPanel = () => {
   const { selectedImages } = useImages();
@@ -19,25 +13,22 @@ export const OperationPanel = () => {
 
       <OperationsContainer>
         <Operations.Root title="Aritméticas">
-          <Operations.Operation title="Adição" operationFunction={addition}>
+          <Operations.Operation title="Adição" operationKey="ADDITION">
             {oneImageSelected && <OperationInput />}
           </Operations.Operation>
 
-          <Operations.Operation
-            title="Subtração"
-            operationFunction={subtraction}
-          >
+          <Operations.Operation title="Subtração" operationKey="SUBTRACTION">
             {oneImageSelected && <OperationInput />}
           </Operations.Operation>
 
           <Operations.Operation
             title="Multiplicação"
-            operationFunction={multiplication}
+            operationKey="MULTIPLICATION"
           >
             {oneImageSelected && <OperationInput />}
           </Operations.Operation>
 
-          <Operations.Operation title="Divisão" operationFunction={division}>
+          <Operations.Operation title="Divisão" operationKey="DIVISION">
             {oneImageSelected && <OperationInput />}
           </Operations.Operation>
         </Operations.Root>

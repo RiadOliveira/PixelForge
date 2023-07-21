@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
 import { drawImageOnCanvas } from './auxiliar/drawImageOnCanvas';
 import { Image as ImageJs } from 'image-js';
 

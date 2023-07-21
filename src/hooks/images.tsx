@@ -1,6 +1,7 @@
 import { createContext, useCallback, useContext, useState } from 'react';
 import { DefaultComponentProps } from 'types/DefaultComponentProps';
-import { OperationFunction } from 'types/OperationFunction';
+import { OperationKey } from 'types/operations';
+import { executeOperation } from 'utils/operations/executeOperation';
 
 interface IImagesContext {
   images: HTMLCanvasElement[];
@@ -8,7 +9,7 @@ interface IImagesContext {
   updateImages: (newImages: HTMLCanvasElement[]) => void;
   setSelectedImages: (selectedImages: HTMLCanvasElement[]) => void;
   updateImagesWithOperationOnSelectedImages: (
-    operation: OperationFunction,
+    operationKey: OperationKey,
     inputValues: number[],
   ) => void;
 }
@@ -26,11 +27,13 @@ const ImagesContext = ({ children }: DefaultComponentProps) => {
   );
 
   const updateImagesWithOperationOnSelectedImages = useCallback(
-    (operationFunction: OperationFunction, inputValues: number[]) => {
-      const newImages = operationFunction({
-        images: selectedImages,
+    (operationKey: OperationKey, inputValues: number[]) => {
+      const newImages = executeOperation(
+        selectedImages,
+        operationKey,
         inputValues,
-      });
+      );
+
       setImages(previousImages => [...previousImages, ...newImages]);
     },
     [selectedImages],

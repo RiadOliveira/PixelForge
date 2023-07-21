@@ -29,7 +29,7 @@ export const Container = styled.div`
 
   &:hover,
   &:focus-within {
-    background-color: rgba(0, 0, 0, 0.03);
+    background-color: rgba(0, 0, 0, 0.04);
   }
 
   &:not(:focus-within) {
