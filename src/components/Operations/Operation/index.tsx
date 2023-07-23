@@ -18,7 +18,15 @@ export const Operation = ({
     useImages();
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const handleOnClick = useCallback(() => {
+  const handleOnContainerClick = useCallback(() => {
+    const { current } = containerRef;
+    if (!current) return;
+
+    const inputElements = current.getElementsByTagName('input');
+    inputElements.item(0)?.focus();
+  }, []);
+
+  const handleOnButtonClick = useCallback(() => {
     const { current } = containerRef;
     if (!current) return;
 
@@ -33,13 +41,13 @@ export const Operation = ({
   }, [operationKey, updateImagesWithOperationOnSelectedImages]);
 
   return (
-    <Container tabIndex={0} ref={containerRef}>
+    <Container tabIndex={0} ref={containerRef} onClick={handleOnContainerClick}>
       <span>{title}</span>
 
       {children}
 
       {selectedImages.length > 0 && (
-        <ApplyButton type="button" onClick={handleOnClick}>
+        <ApplyButton type="button" onClick={handleOnButtonClick}>
           Aplicar operação
         </ApplyButton>
       )}

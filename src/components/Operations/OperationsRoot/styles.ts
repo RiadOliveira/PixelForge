@@ -8,7 +8,7 @@ export const Container = styled.section`
   padding: 8px 4px;
   overflow: hidden;
 
-  border-block: 2px solid ${borderColor};
+  border-top: 2px solid ${borderColor};
   max-height: 28px;
   transition: 0.5s;
 
@@ -24,6 +24,10 @@ export const Container = styled.section`
     visibility: hidden;
     transition: 0.3s;
     transition-delay: 0.1s;
+  }
+
+  &:last-child {
+    border-bottom: 2px solid ${borderColor};
   }
 
   &:hover {
