@@ -1,17 +1,23 @@
 import { OperationKey } from 'types/operations';
 import { ARITHMETICS_OPERATIONS } from 'types/operations/arithmetics';
 import { LOGICS_OPERATIONS } from 'types/operations/logics';
-import { executeBytewiseOperation } from './executeBytewiseOperation';
+import { executeBytewiseOperation } from './bytewise/executeBytewiseOperation';
 
 export const executeOperation = (
   images: HTMLCanvasElement[],
   operationKey: OperationKey,
   inputValues: number[],
+  normalizeValues = false,
 ): HTMLCanvasElement[] => {
   const arithmeticOrLogicOperation = isArithmeticOrLogicOperation(operationKey);
 
   if (arithmeticOrLogicOperation) {
-    return executeBytewiseOperation(images, operationKey, inputValues);
+    return executeBytewiseOperation(
+      images,
+      operationKey,
+      inputValues,
+      normalizeValues,
+    );
   }
 
   return images;

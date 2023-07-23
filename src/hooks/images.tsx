@@ -6,8 +6,10 @@ import { executeOperation } from 'utils/operations/executeOperation';
 interface IImagesContext {
   images: HTMLCanvasElement[];
   selectedImages: HTMLCanvasElement[];
+  normalizeValues: boolean;
   updateImages: (newImages: HTMLCanvasElement[]) => void;
   setSelectedImages: (selectedImages: HTMLCanvasElement[]) => void;
+  setNormalizeValues: (normalizeValues: boolean) => void;
   updateImagesWithOperationOnSelectedImages: (
     operationKey: OperationKey,
     inputValues: number[],
@@ -18,6 +20,7 @@ const imagesContext = createContext<IImagesContext>({} as IImagesContext);
 
 const ImagesContext = ({ children }: DefaultComponentProps) => {
   const [images, setImages] = useState<HTMLCanvasElement[]>([]);
+  const [normalizeValues, setNormalizeValues] = useState(false);
   const [selectedImages, setSelectedImages] = useState<HTMLCanvasElement[]>([]);
 
   const updateImages = useCallback(
@@ -32,11 +35,12 @@ const ImagesContext = ({ children }: DefaultComponentProps) => {
         selectedImages,
         operationKey,
         inputValues,
+        normalizeValues,
       );
 
       setImages(previousImages => [...previousImages, ...newImages]);
     },
-    [selectedImages],
+    [normalizeValues, selectedImages],
   );
 
   return (
@@ -44,8 +48,10 @@ const ImagesContext = ({ children }: DefaultComponentProps) => {
       value={{
         images,
         selectedImages,
+        normalizeValues,
         updateImages,
         setSelectedImages,
+        setNormalizeValues,
         updateImagesWithOperationOnSelectedImages,
       }}
     >

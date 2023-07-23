@@ -2,14 +2,21 @@ import { Operations } from 'components/Operations';
 import { Container, OperationsContainer } from './styles';
 import { OperationInput } from 'components/Operations/OperationInput';
 import { useImages } from 'hooks/images';
+import { Checkbox } from 'components/Checkbox';
 
 export const OperationPanel = () => {
-  const { selectedImages } = useImages();
+  const { selectedImages, normalizeValues, setNormalizeValues } = useImages();
   const oneImageSelected = selectedImages.length === 1;
 
   return (
     <Container>
       <h3>Painel de Operações</h3>
+
+      <Checkbox
+        label="Normalizar valores"
+        checked={normalizeValues}
+        handleChange={setNormalizeValues}
+      />
 
       <OperationsContainer>
         <Operations.Root title="Aritméticas">

@@ -61,7 +61,8 @@ export const ApplyButton = styled.button`
     margin-top: -9px;
   }
 
-  &:hover {
-    background-color: #282828;
+  &:hover,
+  &:focus {
+    background-color: #242424;
   }
 `;
