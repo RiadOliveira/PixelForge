@@ -1,13 +1,15 @@
 import { Operations } from 'components/Operations';
 import { Container, OperationsContainer } from './styles';
-import { OperationInput } from 'components/Operations/OperationInput';
 import { useImages } from 'hooks/images';
 import { Checkbox } from 'components/Checkbox';
 import {
   ARITHMETICS_OPERATIONS,
   ArithmeticOperationKey,
-} from 'types/operations/arithmetics';
-import { LOGICS_OPERATIONS, LogicOperationKey } from 'types/operations/logics';
+} from 'types/operationsNames/arithmetics';
+import {
+  LOGICS_OPERATIONS,
+  LogicOperationKey,
+} from 'types/operationsNames/logics';
 
 export const OperationPanel = () => {
   const { selectedImages, normalizeValues, setNormalizeValues } = useImages();
@@ -31,7 +33,7 @@ export const OperationPanel = () => {
               title={value}
               operationKey={key as ArithmeticOperationKey}
             >
-              {oneImageSelected && <OperationInput />}
+              {oneImageSelected && <Operations.Input />}
             </Operations.Operation>
           ))}
         </Operations.Root>
@@ -43,9 +45,13 @@ export const OperationPanel = () => {
               title={value}
               operationKey={key as LogicOperationKey}
             >
-              {oneImageSelected && <OperationInput />}
+              {oneImageSelected && <Operations.Input />}
             </Operations.Operation>
           ))}
+        </Operations.Root>
+
+        <Operations.Root title="Transformações">
+          <Operations.Transformations />
         </Operations.Root>
       </OperationsContainer>
     </Container>

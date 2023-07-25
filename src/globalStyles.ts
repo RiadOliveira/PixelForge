@@ -25,9 +25,12 @@ const GlobalStyles = createGlobalStyle`
     color: ${textColor};
   }
 
-  button {
-    font-family: ${secondFont};
+  button:not(:disabled), select {
     cursor: pointer;
+  }
+
+  button, select {
+    font-family: ${secondFont};
     padding: 0;
   }
 

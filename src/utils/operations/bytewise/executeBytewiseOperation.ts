@@ -1,7 +1,7 @@
 import {
   BYTEWISE_OPERATIONS,
   BytewiseOperationKey,
-} from 'types/BytewiseOperations';
+} from 'types/operations/BytewiseOperations';
 import { handleBytewiseOneImageOperation } from './handleBytewiseOneImageOperation';
 import { handleBytewiseTwoImagesOperation } from './handleBytewiseTwoImagesOperation';
 

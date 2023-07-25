@@ -23,7 +23,7 @@ export const Container = styled.section`
     opacity: 0;
     visibility: hidden;
     transition: 0.3s;
-    transition-delay: 0.1s;
+    transition-delay: 0.2s;
   }
 
   &:last-child {
@@ -38,5 +38,9 @@ export const Container = styled.section`
       opacity: 1;
       visibility: visible;
     }
+  }
+
+  &:not(:hover) {
+    transition-delay: 0.3s;
   }
 `;

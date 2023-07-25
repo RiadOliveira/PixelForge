@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.input`
   width: calc(100% - 16px);
-  height: 32px;
+  height: 30px;
   font-size: 12px;
 
   &::-webkit-outer-spin-button,
@@ -14,5 +14,9 @@ export const Container = styled.input`
   &[type='number'] {
     -moz-appearance: textfield;
     appearance: textfield;
+  }
+
+  &::placeholder {
+    color: rgba(0, 0, 0, 0.3);
   }
 `;

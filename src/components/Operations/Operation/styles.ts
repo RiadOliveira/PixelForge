@@ -12,6 +12,7 @@ export const Container = styled.div`
 
   display: flex;
   flex-direction: column;
+  transition: 0.2s;
   gap: 8px;
 
   *:not(button) {
@@ -42,27 +43,5 @@ export const Container = styled.div`
     span {
       border-color: ${borderColor};
     }
-  }
-`;
-
-export const ApplyButton = styled.button`
-  width: 100%;
-  padding: 8px;
-  border-top: 1px solid ${borderColor};
-  background-color: rgba(0, 0, 0, 0.75);
-  color: #ffffff;
-
-  border-top: 1px solid ${borderColor};
-  border-bottom-left-radius: 2px;
-  border-bottom-right-radius: 2px;
-  transition: 0.3s;
-
-  span + & {
-    margin-top: -9px;
-  }
-
-  &:hover,
-  &:focus {
-    background-color: #242424;
   }
 `;

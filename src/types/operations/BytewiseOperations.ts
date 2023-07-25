@@ -1,5 +1,5 @@
-import { ArithmeticOperationKey } from 'types/operations/arithmetics';
-import { LogicOperationKey } from 'types/operations/logics';
+import { ArithmeticOperationKey } from 'types/operationsNames/arithmetics';
+import { LogicOperationKey } from 'types/operationsNames/logics';
 
 export type BytewiseOperationKey = ArithmeticOperationKey | LogicOperationKey;
 export type BytewiseOperation = (first?: number, second?: number) => number;
