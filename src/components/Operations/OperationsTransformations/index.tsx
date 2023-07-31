@@ -22,7 +22,8 @@ const TRANSFORMATIONS_INPUTS_NAMES: { [key in TransformationKey]: string[] } = {
   SCALE: ['Escala X', 'Escala Y'],
   HORIZONTAL_REFLECTION: [],
   VERTICAL_REFLECTION: [],
-  SHEARING: ['Cisalhamento X', 'Cisalhamento Y'],
+  X_SHEARING: ['Valor do Cisalhamento'],
+  Y_SHEARING: ['Valor do Cisalhamento'],
 };
 
 export const OperationsTransformations = () => {
@@ -69,6 +70,7 @@ export const OperationsTransformations = () => {
         placeholder="Transformações adicionadas"
         type="text"
         value={appliedTransformations}
+        readOnly
       />
 
       <TransformationsSelect

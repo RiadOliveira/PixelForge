@@ -1,5 +1,5 @@
-import { BytewiseOperation } from 'types/BytewiseOperations';
 import { RGBValuesData } from 'types/RGBValuesData';
+import { BytewiseOperation } from 'types/operations/BytewiseOperations';
 import { generateDefaultRGBValuesData } from 'utils/auxiliar/generateDefaultRGBValuesData';
 import { getRGBAColorOfIndex } from 'utils/auxiliar/getRGBAColorOfIndex';
 import { transferValuesToNormalizedDataArray } from 'utils/auxiliar/transferValuesToNormalizedDataArray';

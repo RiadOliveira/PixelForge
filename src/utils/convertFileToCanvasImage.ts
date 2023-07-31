@@ -108,7 +108,7 @@ const convertDefaultImageFormats = (file: File): Promise<HTMLCanvasElement> =>
       image.onload = () => {
         const canvas = document.createElement('canvas');
 
-        drawImageOnCanvas(canvas, image);
+        drawImageOnCanvas(image, canvas);
         resolve(canvas);
       };
       image.onerror = () => reject(new Error());

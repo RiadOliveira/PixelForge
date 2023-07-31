@@ -1,8 +1,8 @@
 import { DrawData } from 'types/DrawData';
 
 export const drawImageOnCanvas = (
-  canvas: HTMLCanvasElement,
   image: HTMLImageElement | HTMLCanvasElement,
+  canvas: HTMLCanvasElement,
   {
     width = image.width,
     height = image.height,
@@ -13,5 +13,5 @@ export const drawImageOnCanvas = (
 ) => {
   canvas.width = width;
   canvas.height = height;
-  context.drawImage(image, startX, startY, width, height, 0, 0, width, height);
+  context.drawImage(image, startX, startY, width, height);
 };

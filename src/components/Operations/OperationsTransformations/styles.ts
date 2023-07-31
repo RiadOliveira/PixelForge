@@ -55,9 +55,10 @@ export const ButtonsContainer = styled.div`
 
   button {
     width: 48%;
-  }
 
-  button:hover {
-    opacity: 0.83;
+    &:hover,
+    &:focus {
+      opacity: 0.83;
+    }
   }
 `;

@@ -3,27 +3,33 @@ import { LOGICS_OPERATIONS } from 'types/operationsNames/logics';
 import { executeBytewiseOperation } from './bytewise/executeBytewiseOperation';
 import { ARITHMETICS_OPERATIONS } from 'types/operationsNames/arithmetics';
 import { OperationData } from 'types/operations/OperationData';
-import { BytewiseOperationKey } from 'types/operations/BytewiseOperations';
+import { TRANSFORMATIONS } from 'types/operationsNames/transformations';
+import { executeTransformations } from './transformations/executeTransformations';
 
 export const executeOperation = (
   images: HTMLCanvasElement[],
   operationsData: OperationData[],
   normalizeValues = false,
 ): HTMLCanvasElement[] => {
-  const [{ key: operationKey, values }] = operationsData;
-  const arithmeticOrLogicOperation = isArithmeticOrLogicOperation(operationKey);
+  const [{ key: operationKey }] = operationsData;
+  const operationFunction = getOperationFunction(operationKey);
 
-  if (arithmeticOrLogicOperation) {
-    return executeBytewiseOperation(
-      images,
-      operationKey as BytewiseOperationKey,
-      values,
-      normalizeValues,
-    );
+  return operationFunction(images, operationsData, normalizeValues);
+};
+
+const getOperationFunction = (operationKey: OperationKey) => {
+  switch (true) {
+    case isArithmeticOrLogicOperation(operationKey):
+      return executeBytewiseOperation;
+    case isTransformation(operationKey):
+      return executeTransformations;
+    default:
+      return executeBytewiseOperation;
   }
-
-  return images;
 };
 
 const isArithmeticOrLogicOperation = (operationKey: OperationKey) =>
   operationKey in ARITHMETICS_OPERATIONS || operationKey in LOGICS_OPERATIONS;
+
+const isTransformation = (operationKey: OperationKey) =>
+  operationKey in TRANSFORMATIONS;

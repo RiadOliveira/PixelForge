@@ -29,7 +29,7 @@ export const CanvasImage = ({
     const { current } = canvasRef;
     if (!current) return;
 
-    drawImageOnCanvas(current, element);
+    drawImageOnCanvas(element, current);
   }, [element]);
 
   return (
