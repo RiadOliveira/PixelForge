@@ -1,7 +1,7 @@
-import { BytewiseOperation } from 'types/BytewiseOperations';
-import { ImageDataToHandleOperations } from 'types/ImageDataToHandleOperations';
 import { RGBKey } from 'types/RGBAIndexes';
 import { RGBValuesData } from 'types/RGBValuesData';
+import { BytewiseOperation } from 'types/operations/BytewiseOperations';
+import { ImageDataToHandleOperations } from 'types/operations/ImageDataToHandleOperations';
 import { generateDefaultRGBValuesData } from 'utils/auxiliar/generateDefaultRGBValuesData';
 import { getImagesDataToHandleOperations } from 'utils/auxiliar/getImagesDataToHandleOperations';
 import { getRGBAColorOfIndex } from 'utils/auxiliar/getRGBAColorOfIndex';

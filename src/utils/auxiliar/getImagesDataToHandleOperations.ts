@@ -1,4 +1,4 @@
-import { ImageDataToHandleOperations } from 'types/ImageDataToHandleOperations';
+import { ImageDataToHandleOperations } from 'types/operations/ImageDataToHandleOperations';
 
 export const getImagesDataToHandleOperations = (
   images: HTMLCanvasElement[],

@@ -46,7 +46,11 @@ export const CanvasImage = ({
       {...props}
     >
       <canvas ref={canvasRef} />
-      {selected && <span>{portugueseText} selecionada</span>}
+      {selected && (
+        <span>
+          {portugueseText} ({element.width}x{element.height})
+        </span>
+      )}
     </Container>
   );
 };
