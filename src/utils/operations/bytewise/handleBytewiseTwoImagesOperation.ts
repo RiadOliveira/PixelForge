@@ -149,7 +149,8 @@ const updateCanvasPixelUsingTwoImages = (
   bytewiseOperation: BytewiseOperation,
   rgbValuesData?: RGBValuesData,
 ) => {
-  let undefinedPixel = false;
+  let firstUndefined = false;
+  let secondUndefined = false;
 
   for (let ind = 0; ind < 3; ind++) {
     const firstImageValue = firstImageData[firstImageIndex + ind];
@@ -164,11 +165,15 @@ const updateCanvasPixelUsingTwoImages = (
       iterationValue,
     );
 
-    if (!undefinedPixel) {
-      undefinedPixel =
-        firstImageValue === undefined && secondImageValue === undefined;
-    }
+    if (!firstUndefined) firstUndefined = firstImageValue === undefined;
+    if (!secondUndefined) secondUndefined = secondImageValue === undefined;
   }
+  if (firstUndefined && secondUndefined) return;
 
-  if (!undefinedPixel) resultCanvasData[resultCanvasIndex + 3] = 255;
+  const firstOpacity = firstImageData[firstImageIndex + 3];
+  const showFirst = !firstUndefined && firstOpacity !== 0;
+  const secondOpacity = secondImageData[secondImageIndex + 3];
+  const showSecond = !secondUndefined && secondOpacity !== 0;
+
+  if (showFirst || showSecond) resultCanvasData[resultCanvasIndex + 3] = 255;
 };
