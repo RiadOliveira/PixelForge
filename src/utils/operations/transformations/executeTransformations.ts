@@ -54,8 +54,8 @@ export const executeTransformations = (
   _normalizeValues: boolean,
 ) => {
   const { width: imageWidth, height: imageHeight } = image;
-  const newCanvas = document.createElement('canvas');
-  const context = newCanvas.getContext('2d')!;
+  const resultCanvas = document.createElement('canvas');
+  const context = resultCanvas.getContext('2d')!;
 
   const transformMatrix = generateTransformationMatrix(operationsData);
   const { width, height } = getCanvasDimensionsAfterTransformation(
@@ -63,8 +63,8 @@ export const executeTransformations = (
     operationsData,
     image,
   );
-  newCanvas.width = width;
-  newCanvas.height = height;
+  resultCanvas.width = width;
+  resultCanvas.height = height;
 
   context.transform(
     transformMatrix[0][0],
@@ -82,7 +82,7 @@ export const executeTransformations = (
     imageWidth,
     imageHeight,
   );
-  return [newCanvas];
+  return [resultCanvas];
 };
 
 const generateTransformationMatrix = (operationsData: OperationData[]) =>

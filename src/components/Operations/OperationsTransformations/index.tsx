@@ -111,7 +111,9 @@ export const OperationsTransformations = () => {
 
       <OperationsActionButton
         type="button"
-        disabled={selectedImages.length === 0}
+        disabled={
+          selectedImages.length === 0 || addedTransformations.length === 0
+        }
         onClick={handleOnApplyButtonClick}
       >
         Aplicar operações

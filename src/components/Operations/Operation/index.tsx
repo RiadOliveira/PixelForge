@@ -24,8 +24,10 @@ export const Operation = ({
     const { current } = containerRef;
     if (!current) return;
 
-    const inputElements = current.getElementsByTagName('input');
-    inputElements.item(0)?.focus();
+    setTimeout(() => {
+      const inputElements = current.getElementsByTagName('input');
+      inputElements.item(0)?.focus();
+    }, 300);
   }, []);
 
   const handleOnButtonClick = useCallback(() => {

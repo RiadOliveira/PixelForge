@@ -12,7 +12,6 @@ export const Container = styled.div`
 
   display: flex;
   flex-direction: column;
-  transition: 0.2s;
   gap: 8px;
 
   *:not(button) {
@@ -23,9 +22,7 @@ export const Container = styled.div`
     line-height: 32px;
     height: 32px;
     font-size: 14px;
-
     border-bottom: 1px solid transparent;
-    transition: 0.3s;
   }
 
   &:hover,

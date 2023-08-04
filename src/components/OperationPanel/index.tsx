@@ -10,6 +10,7 @@ import {
   LOGICS_OPERATIONS,
   LogicOperationKey,
 } from 'types/operationsNames/logics';
+import { ZOOM_OPERATIONS, ZoomOperationKey } from 'types/operationsNames/zoom';
 
 export const OperationPanel = () => {
   const { selectedImages, normalizeValues, setNormalizeValues } = useImages();
@@ -52,6 +53,18 @@ export const OperationPanel = () => {
 
         <Operations.Root title="Transformações">
           <Operations.Transformations />
+        </Operations.Root>
+
+        <Operations.Root title="Zoom">
+          {Object.entries(ZOOM_OPERATIONS).map(([key, value]) => (
+            <Operations.Operation
+              key={key}
+              title={value}
+              operationKey={key as ZoomOperationKey}
+            >
+              {selectedImages.length > 0 && <Operations.Input />}
+            </Operations.Operation>
+          ))}
         </Operations.Root>
       </OperationsContainer>
     </Container>
