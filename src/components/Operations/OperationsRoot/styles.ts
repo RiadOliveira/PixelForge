@@ -11,7 +11,7 @@ export const Container = styled.section`
   border-top: 2px solid ${borderColor};
   max-height: 28px;
   transition: 0.5s;
-  transition-delay: 0.2s;
+  transition-delay: 0.1s;
 
   h4 {
     font-weight: 500;

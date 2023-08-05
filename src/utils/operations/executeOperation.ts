@@ -7,6 +7,8 @@ import { TRANSFORMATIONS } from 'types/operationsNames/transformations';
 import { executeTransformations } from './transformations/executeTransformations';
 import { ZOOM_OPERATIONS } from 'types/operationsNames/zoom';
 import { executeZoomOperation } from './zoom/executeZoomOperation';
+import { DECOMPOSITIONS } from 'types/operationsNames/decompositions';
+import { executeDecomposition } from './decomposition/executeDecomposition';
 
 export const executeOperation = (
   images: HTMLCanvasElement[],
@@ -27,6 +29,8 @@ const getOperationFunction = (operationKey: OperationKey) => {
       return executeTransformations;
     case isZoomOperation(operationKey):
       return executeZoomOperation;
+    case isDecomposition(operationKey):
+      return executeDecomposition;
     default:
       return executeBytewiseOperation;
   }
@@ -40,3 +44,6 @@ const isTransformation = (operationKey: OperationKey) =>
 
 const isZoomOperation = (operationKey: OperationKey) =>
   operationKey in ZOOM_OPERATIONS;
+
+const isDecomposition = (operationKey: OperationKey) =>
+  operationKey in DECOMPOSITIONS;

@@ -11,6 +11,10 @@ import {
   LogicOperationKey,
 } from 'types/operationsNames/logics';
 import { ZOOM_OPERATIONS, ZoomOperationKey } from 'types/operationsNames/zoom';
+import {
+  DECOMPOSITIONS,
+  DecompositionsKey,
+} from 'types/operationsNames/decompositions';
 
 export const OperationPanel = () => {
   const { selectedImages, normalizeValues, setNormalizeValues } = useImages();
@@ -64,6 +68,16 @@ export const OperationPanel = () => {
             >
               {selectedImages.length > 0 && <Operations.Input />}
             </Operations.Operation>
+          ))}
+        </Operations.Root>
+
+        <Operations.Root title="Decomposições">
+          {Object.entries(DECOMPOSITIONS).map(([key, value]) => (
+            <Operations.Operation
+              key={key}
+              title={value}
+              operationKey={key as DecompositionsKey}
+            />
           ))}
         </Operations.Root>
       </OperationsContainer>
