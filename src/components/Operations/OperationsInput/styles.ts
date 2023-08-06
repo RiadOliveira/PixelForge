@@ -19,4 +19,8 @@ export const Container = styled.input`
   &::placeholder {
     color: rgba(0, 0, 0, 0.3);
   }
+
+  &:disabled {
+    opacity: 0.6 !important;
+  }
 `;

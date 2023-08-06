@@ -36,8 +36,6 @@ export const executeZoomOperation = (
     resultWidth,
     resultHeight,
   );
-  const { data: resultData } = resultImageData;
-
   const imageContext = image.getContext('2d')!;
   const { data: imageData } = imageContext.getImageData(
     0,
@@ -51,7 +49,7 @@ export const executeZoomOperation = (
 
   updatePixelsFunction(
     [resultCanvas, image],
-    [resultData, imageData],
+    [resultImageData.data, imageData],
     parsedZoomFactor,
   );
   resultContext.putImageData(resultImageData, 0, 0);

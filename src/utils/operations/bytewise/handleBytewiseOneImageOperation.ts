@@ -19,13 +19,11 @@ export const handleBytewiseOneImageOperation = (
 
   const resultContext = resultCanvas.getContext('2d')!;
   const resultImageData = resultContext.getImageData(0, 0, width, height);
-  const { data: resultData } = resultImageData;
-
   const imageContext = image.getContext('2d')!;
   const { data: imageData } = imageContext.getImageData(0, 0, width, height);
 
   handleUpdateCanvas(
-    [resultData, imageData],
+    [resultImageData.data, imageData],
     inputValue,
     bytewiseOperation,
     normalizeValues,

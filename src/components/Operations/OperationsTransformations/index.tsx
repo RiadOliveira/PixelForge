@@ -2,12 +2,7 @@ import {
   TRANSFORMATIONS,
   TransformationKey,
 } from 'types/operationsNames/transformations';
-import {
-  ButtonsContainer,
-  Container,
-  InputsContainer,
-  TransformationsSelect,
-} from './styles';
+import { ButtonsContainer, Container, InputsContainer } from './styles';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import { OperationsInput } from '../OperationsInput';
 import { OperationData } from 'types/operations/OperationData';
@@ -15,6 +10,7 @@ import { OperationsActionButton } from '../OperationsActionButton';
 import { firstSelectionText, secondSelectionText } from 'constants/colors';
 import { extractValuesFromInputsChildren } from 'utils/extractValuesFromInputsChildren';
 import { useImages } from 'hooks/images';
+import { Select } from 'components/Select';
 
 const TRANSFORMATIONS_INPUTS_NAMES: { [key in TransformationKey]: string[] } = {
   ROTATION: ['Graus da rotação'],
@@ -73,7 +69,7 @@ export const OperationsTransformations = () => {
         readOnly
       />
 
-      <TransformationsSelect
+      <Select
         onChange={({ target: { value } }) =>
           setSelectedTransformation(value as TransformationKey)
         }
@@ -83,7 +79,7 @@ export const OperationsTransformations = () => {
             {value}
           </option>
         ))}
-      </TransformationsSelect>
+      </Select>
 
       <InputsContainer ref={inputsContainerRef}>
         {TRANSFORMATIONS_INPUTS_NAMES[selectedTransformation].map(inputName => (

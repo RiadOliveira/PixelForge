@@ -1,4 +1,3 @@
-import { OperationKey } from 'types/operationsNames';
 import { LOGICS_OPERATIONS } from 'types/operationsNames/logics';
 import { executeBytewiseOperation } from './bytewise/executeBytewiseOperation';
 import { ARITHMETICS_OPERATIONS } from 'types/operationsNames/arithmetics';
@@ -11,6 +10,52 @@ import { DECOMPOSITIONS } from 'types/operationsNames/decompositions';
 import { executeDecomposition } from './decomposition/executeDecomposition';
 import { PSEUDOCOLORIZATION_OPERATIONS } from 'types/operationsNames/pseudocolorization';
 import { executePseudocolorizationOperation } from './pseudocolorization/executePseudocolorizationOperation';
+import { LINEAR_GRAYSCALE_OPERATIONS } from 'types/operationsNames/linearGrayScale';
+import { NOT_LINEAR_GRAYSCALE_OPERATIONS } from 'types/operationsNames/notLinearGrayScale';
+import { executeLinearGrayscaleOperation } from './linearGrayscale/executeLinearGrayscaleOperation';
+import { executeNotLinearGrayscaleOperation } from './notLinearGrayscale/executeNotLinearGrayscaleOperation';
+
+type OperationFunction = (
+  images: HTMLCanvasElement[],
+  operationsData: OperationData[],
+  normalizeValues: boolean,
+) => HTMLCanvasElement[];
+
+interface OperationFunctionMappedByNames {
+  operationNames: { [key: string]: string };
+  operationFunction: OperationFunction;
+}
+
+const OPERATIONS_FUNCTIONS_MAPPED_BY_NAMES: OperationFunctionMappedByNames[] = [
+  {
+    operationNames: { ...ARITHMETICS_OPERATIONS, ...LOGICS_OPERATIONS },
+    operationFunction: executeBytewiseOperation,
+  },
+  {
+    operationNames: TRANSFORMATIONS,
+    operationFunction: executeTransformations,
+  },
+  {
+    operationNames: ZOOM_OPERATIONS,
+    operationFunction: executeZoomOperation,
+  },
+  {
+    operationNames: DECOMPOSITIONS,
+    operationFunction: executeDecomposition,
+  },
+  {
+    operationNames: PSEUDOCOLORIZATION_OPERATIONS,
+    operationFunction: executePseudocolorizationOperation,
+  },
+  {
+    operationNames: LINEAR_GRAYSCALE_OPERATIONS,
+    operationFunction: executeLinearGrayscaleOperation,
+  },
+  {
+    operationNames: NOT_LINEAR_GRAYSCALE_OPERATIONS,
+    operationFunction: executeNotLinearGrayscaleOperation,
+  },
+];
 
 export const executeOperation = (
   images: HTMLCanvasElement[],
@@ -18,39 +63,9 @@ export const executeOperation = (
   normalizeValues = false,
 ): HTMLCanvasElement[] => {
   const [{ key: operationKey }] = operationsData;
-  const operationFunction = getOperationFunction(operationKey);
 
+  const { operationFunction } = OPERATIONS_FUNCTIONS_MAPPED_BY_NAMES.find(
+    ({ operationNames }) => operationKey in operationNames,
+  )!;
   return operationFunction(images, operationsData, normalizeValues);
 };
-
-const getOperationFunction = (operationKey: OperationKey) => {
-  switch (true) {
-    case isArithmeticOrLogicOperation(operationKey):
-      return executeBytewiseOperation;
-    case isTransformation(operationKey):
-      return executeTransformations;
-    case isZoomOperation(operationKey):
-      return executeZoomOperation;
-    case isDecomposition(operationKey):
-      return executeDecomposition;
-    case isPseudocolorization(operationKey):
-      return executePseudocolorizationOperation;
-    default:
-      return executeBytewiseOperation;
-  }
-};
-
-const isArithmeticOrLogicOperation = (operationKey: OperationKey) =>
-  operationKey in ARITHMETICS_OPERATIONS || operationKey in LOGICS_OPERATIONS;
-
-const isTransformation = (operationKey: OperationKey) =>
-  operationKey in TRANSFORMATIONS;
-
-const isZoomOperation = (operationKey: OperationKey) =>
-  operationKey in ZOOM_OPERATIONS;
-
-const isDecomposition = (operationKey: OperationKey) =>
-  operationKey in DECOMPOSITIONS;
-
-const isPseudocolorization = (operationKey: OperationKey) =>
-  operationKey in PSEUDOCOLORIZATION_OPERATIONS;

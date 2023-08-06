@@ -1,12 +1,13 @@
+import { getGrayValueFromImagePixel } from 'utils/auxiliar/getGrayValueFromImagePixel';
+
 export const handleDensitySlicingPixelsUpdate = ([
   resultData,
   imageData,
 ]: Uint8ClampedArray[]) => {
   for (let ind = 0; ind < imageData.length; ind += 4) {
-    const grayValue =
-      (imageData[ind] + imageData[ind + 1] + imageData[ind + 2]) / 3;
-
+    const grayValue = getGrayValueFromImagePixel(imageData, ind);
     const rgbaValues = [...extractRgbFromGrayValue(grayValue), 255];
+
     rgbaValues.forEach((value, rgbaInd) => (resultData[ind + rgbaInd] = value));
   }
 };

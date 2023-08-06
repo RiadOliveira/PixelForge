@@ -23,4 +23,8 @@ export const Container = styled.button`
       background-color: #323232;
     }
   }
+
+  &:disabled {
+    opacity: 0.7 !important;
+  }
 `;

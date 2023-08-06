@@ -60,7 +60,6 @@ const generateResultCanvasesData = (
 
     const context = canvas.getContext('2d')!;
     const data = context.getImageData(0, 0, width, height);
-
     resultCanvasesData.push({ canvas, context, imageData: data });
   }
 

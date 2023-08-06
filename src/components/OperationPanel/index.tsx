@@ -19,6 +19,10 @@ import {
   PSEUDOCOLORIZATION_OPERATIONS,
   PseudocolorizationKey,
 } from 'types/operationsNames/pseudocolorization';
+import {
+  NOT_LINEAR_GRAYSCALE_OPERATIONS,
+  NotLinearGrayscaleOperationKey,
+} from 'types/operationsNames/notLinearGrayScale';
 
 export const OperationPanel = () => {
   const { selectedImages, normalizeValues, setNormalizeValues } = useImages();
@@ -93,6 +97,22 @@ export const OperationPanel = () => {
               operationKey={key as PseudocolorizationKey}
             />
           ))}
+        </Operations.Root>
+
+        <Operations.Root title="Grayscale - Linear">
+          <Operations.LinearGrayscale />
+        </Operations.Root>
+
+        <Operations.Root title="Grayscale - Não Linear">
+          {Object.entries(NOT_LINEAR_GRAYSCALE_OPERATIONS).map(
+            ([key, value]) => (
+              <Operations.Operation
+                key={key}
+                title={value}
+                operationKey={key as NotLinearGrayscaleOperationKey}
+              />
+            ),
+          )}
         </Operations.Root>
       </OperationsContainer>
     </Container>

@@ -24,11 +24,10 @@ export const handleBytewiseTwoImagesOperation = (
     resultCanvas.width,
     resultCanvas.height,
   );
-  const { data } = imageData;
 
   handleUpdateCanvas(
     [resultCanvas, ...images],
-    data,
+    imageData.data,
     bytewiseOperation,
     normalizeValues,
   );
