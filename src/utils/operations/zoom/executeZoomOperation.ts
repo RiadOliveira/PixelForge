@@ -4,7 +4,7 @@ import { handleReplicationOrExclusionPixelsUpdate } from './handleReplicationOrE
 import { handleInterpolationPixelsUpdate } from './handleInterpolationPixelsUpdate';
 import { handleAverageValuePixelsUpdate } from './handleAverageValuePixelsUpdate';
 
-const UPDATE_CANVAS_PIXELS_FUNCTIONS = {
+const HANDLE_PIXELS_UPDATE = {
   ZOOM_IN_REPLICATION: handleReplicationOrExclusionPixelsUpdate,
   ZOOM_OUT_EXCLUSION: handleReplicationOrExclusionPixelsUpdate,
   ZOOM_IN_INTERPOLATION: handleInterpolationPixelsUpdate,
@@ -44,14 +44,13 @@ export const executeZoomOperation = (
     imageHeight,
   );
 
-  const updatePixelsFunction =
-    UPDATE_CANVAS_PIXELS_FUNCTIONS[key as ZoomOperationKey];
-
+  const updatePixelsFunction = HANDLE_PIXELS_UPDATE[key as ZoomOperationKey];
   updatePixelsFunction(
     [resultCanvas, image],
     [resultImageData.data, imageData],
     parsedZoomFactor,
   );
+
   resultContext.putImageData(resultImageData, 0, 0);
   return [resultCanvas];
 };

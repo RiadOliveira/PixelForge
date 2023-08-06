@@ -3,13 +3,19 @@ import { OperationData } from 'types/operations/OperationData';
 import { getGrayLevelsOfImage } from 'utils/auxiliar/getGrayLevelsOfImage';
 import { handleNewIntervalPixelsUpdate } from './handleNewIntervalPixelsUpdate';
 import { handleByPartsPixelsUpdate } from './handleByPartsPixelsUpdate';
+import { LinearGrayscaleOperationKey } from 'types/operationsNames/linearGrayScale';
+
+const HANDLE_PIXELS_UPDATE = {
+  NEW_INTERVAL: handleNewIntervalPixelsUpdate,
+  BY_PARTS: handleByPartsPixelsUpdate,
+};
 
 export const executeLinearGrayscaleOperation = (
   [image]: HTMLCanvasElement[],
   operationsData: OperationData[],
   _normalizeValues: boolean,
 ) => {
-  const [{ key: operationKey }] = operationsData;
+  const [{ key }] = operationsData;
   const { width, height } = image;
 
   const resultCanvas = document.createElement('canvas');
@@ -27,9 +33,7 @@ export const executeLinearGrayscaleOperation = (
   );
   const intervals = extractIntervalsFromOperationsData(operationsData);
   const handlePixelsUpdate =
-    operationKey === 'NEW_INTERVAL'
-      ? handleNewIntervalPixelsUpdate
-      : handleByPartsPixelsUpdate;
+    HANDLE_PIXELS_UPDATE[key as LinearGrayscaleOperationKey];
 
   handlePixelsUpdate(
     [resultImageData.data, imageData],

@@ -14,6 +14,8 @@ import { LINEAR_GRAYSCALE_OPERATIONS } from 'types/operationsNames/linearGraySca
 import { NOT_LINEAR_GRAYSCALE_OPERATIONS } from 'types/operationsNames/notLinearGrayScale';
 import { executeLinearGrayscaleOperation } from './linearGrayscale/executeLinearGrayscaleOperation';
 import { executeNotLinearGrayscaleOperation } from './notLinearGrayscale/executeNotLinearGrayscaleOperation';
+import { ADDITIONAL_GRAYSCALE_OPERATIONS } from 'types/operationsNames/additionalGrayscale';
+import { executeAdditionalGrayscaleOperation } from './additionalGrayscale/executeAdditionalGrayscaleOperation';
 
 type OperationFunction = (
   images: HTMLCanvasElement[],
@@ -55,9 +57,13 @@ const OPERATIONS_FUNCTIONS_MAPPED_BY_NAMES: OperationFunctionMappedByNames[] = [
     operationNames: NOT_LINEAR_GRAYSCALE_OPERATIONS,
     operationFunction: executeNotLinearGrayscaleOperation,
   },
+  {
+    operationNames: ADDITIONAL_GRAYSCALE_OPERATIONS,
+    operationFunction: executeAdditionalGrayscaleOperation,
+  },
 ];
 
-export const executeOperation = (
+export const executeOperations = (
   images: HTMLCanvasElement[],
   operationsData: OperationData[],
   normalizeValues = false,

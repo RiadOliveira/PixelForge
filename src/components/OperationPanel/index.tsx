@@ -23,6 +23,10 @@ import {
   NOT_LINEAR_GRAYSCALE_OPERATIONS,
   NotLinearGrayscaleOperationKey,
 } from 'types/operationsNames/notLinearGrayScale';
+import {
+  ADDITIONAL_GRAYSCALE_OPERATIONS,
+  AdditionalGrayscaleOperationKey,
+} from 'types/operationsNames/additionalGrayscale';
 
 export const OperationPanel = () => {
   const { selectedImages, normalizeValues, setNormalizeValues } = useImages();
@@ -110,6 +114,18 @@ export const OperationPanel = () => {
                 key={key}
                 title={value}
                 operationKey={key as NotLinearGrayscaleOperationKey}
+              />
+            ),
+          )}
+        </Operations.Root>
+
+        <Operations.Root title="Grayscale - Adicionais">
+          {Object.entries(ADDITIONAL_GRAYSCALE_OPERATIONS).map(
+            ([key, value]) => (
+              <Operations.Operation
+                key={key}
+                title={value}
+                operationKey={key as AdditionalGrayscaleOperationKey}
               />
             ),
           )}

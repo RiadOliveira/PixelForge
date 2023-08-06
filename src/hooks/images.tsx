@@ -1,7 +1,7 @@
 import { createContext, useCallback, useContext, useState } from 'react';
 import { DefaultComponentProps } from 'types/DefaultComponentProps';
 import { OperationData } from 'types/operations/OperationData';
-import { executeOperation } from 'utils/operations/executeOperation';
+import { executeOperations } from 'utils/operations/executeOperations';
 
 interface IImagesContext {
   images: HTMLCanvasElement[];
@@ -30,7 +30,7 @@ const ImagesContext = ({ children }: DefaultComponentProps) => {
 
   const updateImagesWithOperationOnSelectedImages = useCallback(
     (operationsData: OperationData[]) => {
-      const newImages = executeOperation(
+      const newImages = executeOperations(
         selectedImages,
         operationsData,
         normalizeValues,

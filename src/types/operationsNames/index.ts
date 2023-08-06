@@ -1,3 +1,4 @@
+import { ADDITIONAL_GRAYSCALE_OPERATIONS } from './additionalGrayscale';
 import { ARITHMETICS_OPERATIONS } from './arithmetics';
 import { DECOMPOSITIONS } from './decompositions';
 import { LINEAR_GRAYSCALE_OPERATIONS } from './linearGrayScale';
@@ -16,6 +17,7 @@ export const OPERATIONS = {
   ...PSEUDOCOLORIZATION_OPERATIONS,
   ...LINEAR_GRAYSCALE_OPERATIONS,
   ...NOT_LINEAR_GRAYSCALE_OPERATIONS,
+  ...ADDITIONAL_GRAYSCALE_OPERATIONS,
 } as const;
 
 export type OperationKey = keyof typeof OPERATIONS;
