@@ -38,9 +38,20 @@ export const executeDecomposition = (
   [{ key }]: OperationData[],
   _normalizeValues: boolean,
 ) => {
-  const { width, height } = image;
-  const resultCanvasQuantity = key.length;
-  const resultCanvases = [] as CanvasData[];
+  const resultCanvasesData = generateResultCanvasesData(key.length, image);
+  updateCanvasesImageData(resultCanvasesData, image, key as DecompositionsKey);
+
+  return resultCanvasesData.map(({ canvas, context, imageData }) => {
+    context.putImageData(imageData, 0, 0);
+    return canvas;
+  });
+};
+
+const generateResultCanvasesData = (
+  resultCanvasQuantity: number,
+  { width, height }: HTMLCanvasElement,
+) => {
+  const resultCanvasesData = [] as CanvasData[];
 
   for (let ind = 0; ind < resultCanvasQuantity; ind++) {
     const canvas = document.createElement('canvas');
@@ -50,9 +61,17 @@ export const executeDecomposition = (
     const context = canvas.getContext('2d')!;
     const data = context.getImageData(0, 0, width, height);
 
-    resultCanvases.push({ canvas, context, imageData: data });
+    resultCanvasesData.push({ canvas, context, imageData: data });
   }
 
+  return resultCanvasesData;
+};
+
+const updateCanvasesImageData = (
+  resultCanvasesData: CanvasData[],
+  image: HTMLCanvasElement,
+  decompositionKey: DecompositionsKey,
+) => {
   const imageContext = image.getContext('2d')!;
   const { data: imageData } = imageContext.getImageData(
     0,
@@ -62,7 +81,7 @@ export const executeDecomposition = (
   );
 
   const { extractComponents, convertColorSpaceToImageData } =
-    DECOMPOSITION_FUNCTIONS[key as DecompositionsKey];
+    DECOMPOSITION_FUNCTIONS[decompositionKey];
 
   for (let ind = 0; ind < imageData.length; ind += 4) {
     const rgb = [imageData[ind], imageData[ind + 1], imageData[ind + 2]];
@@ -71,15 +90,10 @@ export const executeDecomposition = (
     colorSpaceData.forEach((dataValues, index) => {
       const {
         imageData: { data },
-      } = resultCanvases[index];
+      } = resultCanvasesData[index];
 
       for (let i = 0; i < 3; i++) data[ind + i] = dataValues[i];
       data[ind + 3] = 255;
     });
   }
-
-  return resultCanvases.map(({ canvas, context, imageData }) => {
-    context.putImageData(imageData, 0, 0);
-    return canvas;
-  });
 };

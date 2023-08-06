@@ -9,6 +9,8 @@ import { ZOOM_OPERATIONS } from 'types/operationsNames/zoom';
 import { executeZoomOperation } from './zoom/executeZoomOperation';
 import { DECOMPOSITIONS } from 'types/operationsNames/decompositions';
 import { executeDecomposition } from './decomposition/executeDecomposition';
+import { PSEUDOCOLORIZATION_OPERATIONS } from 'types/operationsNames/pseudocolorization';
+import { executePseudocolorizationOperation } from './pseudocolorization/executePseudocolorizationOperation';
 
 export const executeOperation = (
   images: HTMLCanvasElement[],
@@ -31,6 +33,8 @@ const getOperationFunction = (operationKey: OperationKey) => {
       return executeZoomOperation;
     case isDecomposition(operationKey):
       return executeDecomposition;
+    case isPseudocolorization(operationKey):
+      return executePseudocolorizationOperation;
     default:
       return executeBytewiseOperation;
   }
@@ -47,3 +51,6 @@ const isZoomOperation = (operationKey: OperationKey) =>
 
 const isDecomposition = (operationKey: OperationKey) =>
   operationKey in DECOMPOSITIONS;
+
+const isPseudocolorization = (operationKey: OperationKey) =>
+  operationKey in PSEUDOCOLORIZATION_OPERATIONS;

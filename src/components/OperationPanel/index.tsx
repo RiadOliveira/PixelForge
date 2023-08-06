@@ -15,6 +15,10 @@ import {
   DECOMPOSITIONS,
   DecompositionsKey,
 } from 'types/operationsNames/decompositions';
+import {
+  PSEUDOCOLORIZATION_OPERATIONS,
+  PseudocolorizationKey,
+} from 'types/operationsNames/pseudocolorization';
 
 export const OperationPanel = () => {
   const { selectedImages, normalizeValues, setNormalizeValues } = useImages();
@@ -77,6 +81,16 @@ export const OperationPanel = () => {
               key={key}
               title={value}
               operationKey={key as DecompositionsKey}
+            />
+          ))}
+        </Operations.Root>
+
+        <Operations.Root title="Pseudocolorização">
+          {Object.entries(PSEUDOCOLORIZATION_OPERATIONS).map(([key, value]) => (
+            <Operations.Operation
+              key={key}
+              title={value}
+              operationKey={key as PseudocolorizationKey}
             />
           ))}
         </Operations.Root>
