@@ -101,6 +101,23 @@ const getCanvasDimensionsAfterTransformation = (
   operationsData: OperationData[],
   canvas: HTMLCanvasElement,
 ) => {
+  const translationIndex = operationsData.findIndex(
+    ({ key }) => key === 'TRANSLATION',
+  );
+  if (translationIndex !== -1) {
+    const {
+      values: [xTranslation, yTranslation],
+    } = operationsData[translationIndex];
+
+    const updatedWidth = canvas.width + xTranslation * 2;
+    const updatedHeight = canvas.height + yTranslation * 2;
+
+    return {
+      width: updatedWidth,
+      height: updatedHeight,
+    };
+  }
+
   const { minX, maxX, minY, maxY } = getCanvasMinAndMaxCoordinates(
     transformMatrix,
     canvas,
