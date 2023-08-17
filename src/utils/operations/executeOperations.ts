@@ -16,6 +16,8 @@ import { executeLinearGrayscaleOperation } from './linearGrayscale/executeLinear
 import { executeNotLinearGrayscaleOperation } from './notLinearGrayscale/executeNotLinearGrayscaleOperation';
 import { ADDITIONAL_GRAYSCALE_OPERATIONS } from 'types/operationsNames/additionalGrayscale';
 import { executeAdditionalGrayscaleOperation } from './additionalGrayscale/executeAdditionalGrayscaleOperation';
+import { GAMMA_AND_EQUALIZATION } from 'types/operationsNames/gammaAndEqualization';
+import { executeGammaCorrectionOrEqualization } from './gammaAndEqualization/executeGammaCorrectionOrEqualization';
 
 type OperationFunction = (
   images: HTMLCanvasElement[],
@@ -60,6 +62,10 @@ const OPERATIONS_FUNCTIONS_MAPPED_BY_NAMES: OperationFunctionMappedByNames[] = [
   {
     operationNames: ADDITIONAL_GRAYSCALE_OPERATIONS,
     operationFunction: executeAdditionalGrayscaleOperation,
+  },
+  {
+    operationNames: GAMMA_AND_EQUALIZATION,
+    operationFunction: executeGammaCorrectionOrEqualization,
   },
 ];
 

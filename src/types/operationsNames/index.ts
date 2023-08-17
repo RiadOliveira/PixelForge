@@ -1,6 +1,7 @@
 import { ADDITIONAL_GRAYSCALE_OPERATIONS } from './additionalGrayscale';
 import { ARITHMETICS_OPERATIONS } from './arithmetics';
 import { DECOMPOSITIONS } from './decompositions';
+import { GAMMA_AND_EQUALIZATION } from './gammaAndEqualization';
 import { LINEAR_GRAYSCALE_OPERATIONS } from './linearGrayScale';
 import { LOGICS_OPERATIONS } from './logics';
 import { NOT_LINEAR_GRAYSCALE_OPERATIONS } from './notLinearGrayScale';
@@ -18,6 +19,7 @@ export const OPERATIONS = {
   ...LINEAR_GRAYSCALE_OPERATIONS,
   ...NOT_LINEAR_GRAYSCALE_OPERATIONS,
   ...ADDITIONAL_GRAYSCALE_OPERATIONS,
+  ...GAMMA_AND_EQUALIZATION,
 } as const;
 
 export type OperationKey = keyof typeof OPERATIONS;

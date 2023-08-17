@@ -27,6 +27,10 @@ import {
   ADDITIONAL_GRAYSCALE_OPERATIONS,
   AdditionalGrayscaleOperationKey,
 } from 'types/operationsNames/additionalGrayscale';
+import {
+  GAMMA_AND_EQUALIZATION,
+  GammaAndEqualizationKey,
+} from 'types/operationsNames/gammaAndEqualization';
 
 export const OperationPanel = () => {
   const { selectedImages, normalizeValues, setNormalizeValues } = useImages();
@@ -129,6 +133,21 @@ export const OperationPanel = () => {
               />
             ),
           )}
+        </Operations.Root>
+
+        <Operations.Root title="Gama e Equalização">
+          {Object.entries(GAMMA_AND_EQUALIZATION).map(([key, value]) => (
+            <Operations.Operation
+              key={key}
+              title={value}
+              operationKey={key as GammaAndEqualizationKey}
+            >
+              {selectedImages.length > 0 &&
+                (key as GammaAndEqualizationKey) === 'GAMMA_CORRECTION' && (
+                  <Operations.Input />
+                )}
+            </Operations.Operation>
+          ))}
         </Operations.Root>
       </OperationsContainer>
     </Container>

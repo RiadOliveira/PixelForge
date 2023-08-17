@@ -7,5 +7,5 @@ export const getGrayValueFromImagePixel = (
   for (let rgbInd = 0; rgbInd < 3; rgbInd++) {
     grayValue += imageData[pixelIndex + rgbInd];
   }
-  return Math.round(grayValue / 3);
+  return Math.floor(grayValue / 3);
 };
