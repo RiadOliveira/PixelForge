@@ -31,6 +31,7 @@ import {
   GAMMA_AND_EQUALIZATION,
   GammaAndEqualizationKey,
 } from 'types/operationsNames/gammaAndEqualization';
+import { BIT_SLICING, BitSlicingKey } from 'types/operationsNames/bitSlicing';
 
 export const OperationPanel = () => {
   const { selectedImages, normalizeValues, setNormalizeValues } = useImages();
@@ -146,6 +147,18 @@ export const OperationPanel = () => {
                 (key as GammaAndEqualizationKey) === 'GAMMA_CORRECTION' && (
                   <Operations.Input />
                 )}
+            </Operations.Operation>
+          ))}
+        </Operations.Root>
+
+        <Operations.Root title="Fatiamento de bits">
+          {Object.entries(BIT_SLICING).map(([key, value]) => (
+            <Operations.Operation
+              key={key}
+              title={value}
+              operationKey={key as BitSlicingKey}
+            >
+              {selectedImages.length > 0 && <Operations.Input />}
             </Operations.Operation>
           ))}
         </Operations.Root>

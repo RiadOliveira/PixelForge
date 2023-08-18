@@ -18,6 +18,8 @@ import { ADDITIONAL_GRAYSCALE_OPERATIONS } from 'types/operationsNames/additiona
 import { executeAdditionalGrayscaleOperation } from './additionalGrayscale/executeAdditionalGrayscaleOperation';
 import { GAMMA_AND_EQUALIZATION } from 'types/operationsNames/gammaAndEqualization';
 import { executeGammaCorrectionOrEqualization } from './gammaAndEqualization/executeGammaCorrectionOrEqualization';
+import { BIT_SLICING } from 'types/operationsNames/bitSlicing';
+import { executeBitSlicingOperation } from './bitSlicing/executeBitSlicingOperation';
 
 type OperationFunction = (
   images: HTMLCanvasElement[],
@@ -66,6 +68,10 @@ const OPERATIONS_FUNCTIONS_MAPPED_BY_NAMES: OperationFunctionMappedByNames[] = [
   {
     operationNames: GAMMA_AND_EQUALIZATION,
     operationFunction: executeGammaCorrectionOrEqualization,
+  },
+  {
+    operationNames: BIT_SLICING,
+    operationFunction: executeBitSlicingOperation,
   },
 ];
 

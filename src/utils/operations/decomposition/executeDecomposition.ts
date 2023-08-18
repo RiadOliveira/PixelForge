@@ -1,3 +1,4 @@
+import { CanvasData } from 'types/CanvasData';
 import { OperationData } from 'types/operations/OperationData';
 import { DecompositionsKey } from 'types/operationsNames/decompositions';
 import {
@@ -7,12 +8,6 @@ import {
   convertYuvToImageData,
 } from 'utils/auxiliar/colorSpaceToImageDataConversions';
 import { rgbToCmyk, rgbToHsb, rgbToYuv } from 'utils/auxiliar/rgbConversions';
-
-interface CanvasData {
-  canvas: HTMLCanvasElement;
-  context: CanvasRenderingContext2D;
-  imageData: ImageData;
-}
 
 const DECOMPOSITION_FUNCTIONS = {
   RGB: {
