@@ -31,7 +31,6 @@ const DECOMPOSITION_FUNCTIONS = {
 export const executeDecomposition = (
   [image]: HTMLCanvasElement[],
   [{ key }]: OperationData[],
-  _normalizeValues: boolean,
 ) => {
   const resultCanvasesData = generateResultCanvasesData(key.length, image);
   updateCanvasesImageData(resultCanvasesData, image, key as DecompositionsKey);

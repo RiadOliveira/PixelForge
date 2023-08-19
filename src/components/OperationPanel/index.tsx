@@ -23,7 +23,14 @@ import {
   NOT_LINEAR_GRAYSCALE_OPERATIONS,
   NotLinearGrayscaleOperationKey,
 } from 'types/operationsNames/notLinearGrayScale';
-import { HIGHLIGHTS, HighlightKey } from 'types/operationsNames/highlight';
+import {
+  HIGHLIGHTS,
+  HighlightOperationKey,
+} from 'types/operationsNames/highlight';
+import {
+  LOW_PASS_FILTERS,
+  LowPassFiltersKey,
+} from 'types/operationsNames/lowPassFilters';
 
 export const OperationPanel = () => {
   const { selectedImages, normalizeValues, setNormalizeValues } = useImages();
@@ -121,12 +128,26 @@ export const OperationPanel = () => {
             <Operations.Operation
               key={key}
               title={value}
-              operationKey={key as HighlightKey}
+              operationKey={key as HighlightOperationKey}
             >
               {selectedImages.length > 0 &&
-                (key as HighlightKey) !== 'HISTOGRAM_EQUALIZATION' && (
+                (key as HighlightOperationKey) !== 'HISTOGRAM_EQUALIZATION' && (
                   <Operations.Input />
                 )}
+            </Operations.Operation>
+          ))}
+        </Operations.Root>
+
+        <Operations.Root title="Filtros passa-baixa">
+          {Object.entries(LOW_PASS_FILTERS).map(([key, value]) => (
+            <Operations.Operation
+              key={key}
+              title={value}
+              operationKey={key as LowPassFiltersKey}
+            >
+              {selectedImages.length > 0 && (
+                <Operations.Input placeholder="Tamanho da janela" />
+              )}
             </Operations.Operation>
           ))}
         </Operations.Root>

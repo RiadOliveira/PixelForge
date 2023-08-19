@@ -7,7 +7,6 @@ import { handleNotLinearWithFunctionPixelsUpdate } from './handleNotLinearWithFu
 export const executeNotLinearGrayscaleOperation = (
   [image]: HTMLCanvasElement[],
   [{ key }]: OperationData[],
-  _normalizeValues: boolean,
 ) => {
   const { width, height } = image;
 

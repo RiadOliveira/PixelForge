@@ -6,7 +6,6 @@ import { executeBitSlicing } from './executeBitSlicing';
 export const executeHighlightOperation = (
   [image]: HTMLCanvasElement[],
   [{ key, values }]: OperationData[],
-  _normalizeValues: boolean,
 ) => {
   const { width, height } = image;
   const imageContext = image.getContext('2d')!;

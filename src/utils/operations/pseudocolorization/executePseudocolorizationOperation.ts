@@ -11,7 +11,6 @@ const HANDLE_PIXELS_UPDATE = {
 export const executePseudocolorizationOperation = (
   [image]: HTMLCanvasElement[],
   [{ key }]: OperationData[],
-  _normalizeValues: boolean,
 ) => {
   const { width, height } = image;
 

@@ -51,7 +51,6 @@ const GENERATE_TRANSFORMATION_MATRIX_FUNCTIONS: {
 export const executeTransformations = (
   [image]: HTMLCanvasElement[],
   operationsData: OperationData[],
-  _normalizeValues: boolean,
 ) => {
   const { width: imageWidth, height: imageHeight } = image;
   const resultCanvas = document.createElement('canvas');

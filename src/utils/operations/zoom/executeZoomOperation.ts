@@ -19,7 +19,6 @@ export const executeZoomOperation = (
       values: [zoomFactor],
     },
   ]: OperationData[],
-  _normalizeValues: boolean,
 ) => {
   const parsedZoomFactor = parseZoomFactor(key as ZoomOperationKey, zoomFactor);
   const { width: imageWidth, height: imageHeight } = image;

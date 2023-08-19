@@ -9,7 +9,7 @@ import { OperationData } from 'types/operations/OperationData';
 export const executeBytewiseOperation = (
   images: HTMLCanvasElement[],
   [{ key, values }]: OperationData[],
-  normalizeValues: boolean,
+  normalizeValues = false,
 ) => {
   const bytewiseOperation = BYTEWISE_OPERATIONS[key as BytewiseOperationKey];
 

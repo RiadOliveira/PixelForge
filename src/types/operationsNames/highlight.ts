@@ -4,4 +4,4 @@ export const HIGHLIGHTS = {
   BIT_SLICING: 'Fatiamento de bits',
 };
 
-export type HighlightKey = keyof typeof HIGHLIGHTS;
+export type HighlightOperationKey = keyof typeof HIGHLIGHTS;

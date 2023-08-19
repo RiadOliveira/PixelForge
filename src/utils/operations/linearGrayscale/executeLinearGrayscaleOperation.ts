@@ -13,7 +13,6 @@ const HANDLE_PIXELS_UPDATE = {
 export const executeLinearGrayscaleOperation = (
   [image]: HTMLCanvasElement[],
   operationsData: OperationData[],
-  _normalizeValues: boolean,
 ) => {
   const [{ key }] = operationsData;
   const { width, height } = image;

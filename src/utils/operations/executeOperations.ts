@@ -16,11 +16,13 @@ import { executeLinearGrayscaleOperation } from './linearGrayscale/executeLinear
 import { executeNotLinearGrayscaleOperation } from './notLinearGrayscale/executeNotLinearGrayscaleOperation';
 import { HIGHLIGHTS } from 'types/operationsNames/highlight';
 import { executeHighlightOperation } from './highlight/executeHighlightOperation';
+import { LOW_PASS_FILTERS } from 'types/operationsNames/lowPassFilters';
+import { executeLowPassFilter } from './lowPassFilter/executeLowPassFilter';
 
 type OperationFunction = (
   images: HTMLCanvasElement[],
   operationsData: OperationData[],
-  normalizeValues: boolean,
+  normalizeValues?: boolean,
 ) => HTMLCanvasElement[];
 
 interface OperationFunctionMappedByNames {
@@ -60,6 +62,10 @@ const OPERATIONS_FUNCTIONS_MAPPED_BY_NAMES: OperationFunctionMappedByNames[] = [
   {
     operationNames: HIGHLIGHTS,
     operationFunction: executeHighlightOperation,
+  },
+  {
+    operationNames: LOW_PASS_FILTERS,
+    operationFunction: executeLowPassFilter,
   },
 ];
 

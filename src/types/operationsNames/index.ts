@@ -3,6 +3,7 @@ import { DECOMPOSITIONS } from './decompositions';
 import { HIGHLIGHTS } from './highlight';
 import { LINEAR_GRAYSCALE_OPERATIONS } from './linearGrayScale';
 import { LOGICS_OPERATIONS } from './logics';
+import { LOW_PASS_FILTERS } from './lowPassFilters';
 import { NOT_LINEAR_GRAYSCALE_OPERATIONS } from './notLinearGrayScale';
 import { PSEUDOCOLORIZATION_OPERATIONS } from './pseudocolorization';
 import { TRANSFORMATIONS } from './transformations';
@@ -18,6 +19,7 @@ export const OPERATIONS = {
   ...LINEAR_GRAYSCALE_OPERATIONS,
   ...NOT_LINEAR_GRAYSCALE_OPERATIONS,
   ...HIGHLIGHTS,
+  ...LOW_PASS_FILTERS,
 } as const;
 
 export type OperationKey = keyof typeof OPERATIONS;
