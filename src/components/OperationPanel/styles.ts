@@ -32,3 +32,23 @@ export const OperationsContainer = styled.div`
   flex-direction: column;
   overflow: hidden;
 `;
+
+export const ChangeSectionButton = styled.button`
+  position: absolute;
+  bottom: 12px;
+
+  width: 90%;
+  height: 40px;
+  font-size: 14px;
+  z-index: 1;
+
+  border-radius: 6px;
+  background-color: ${borderColor};
+  color: #323232;
+  transition: 0.3s;
+
+  &:hover {
+    background-color: #323232;
+    color: #ffffff;
+  }
+`;
