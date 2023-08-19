@@ -14,12 +14,8 @@ import { LINEAR_GRAYSCALE_OPERATIONS } from 'types/operationsNames/linearGraySca
 import { NOT_LINEAR_GRAYSCALE_OPERATIONS } from 'types/operationsNames/notLinearGrayScale';
 import { executeLinearGrayscaleOperation } from './linearGrayscale/executeLinearGrayscaleOperation';
 import { executeNotLinearGrayscaleOperation } from './notLinearGrayscale/executeNotLinearGrayscaleOperation';
-import { ADDITIONAL_GRAYSCALE_OPERATIONS } from 'types/operationsNames/additionalGrayscale';
-import { executeAdditionalGrayscaleOperation } from './additionalGrayscale/executeAdditionalGrayscaleOperation';
-import { GAMMA_AND_EQUALIZATION } from 'types/operationsNames/gammaAndEqualization';
-import { executeGammaCorrectionOrEqualization } from './gammaAndEqualization/executeGammaCorrectionOrEqualization';
-import { BIT_SLICING } from 'types/operationsNames/bitSlicing';
-import { executeBitSlicingOperation } from './bitSlicing/executeBitSlicingOperation';
+import { HIGHLIGHTS } from 'types/operationsNames/highlight';
+import { executeHighlightOperation } from './highlight/executeHighlightOperation';
 
 type OperationFunction = (
   images: HTMLCanvasElement[],
@@ -62,16 +58,8 @@ const OPERATIONS_FUNCTIONS_MAPPED_BY_NAMES: OperationFunctionMappedByNames[] = [
     operationFunction: executeNotLinearGrayscaleOperation,
   },
   {
-    operationNames: ADDITIONAL_GRAYSCALE_OPERATIONS,
-    operationFunction: executeAdditionalGrayscaleOperation,
-  },
-  {
-    operationNames: GAMMA_AND_EQUALIZATION,
-    operationFunction: executeGammaCorrectionOrEqualization,
-  },
-  {
-    operationNames: BIT_SLICING,
-    operationFunction: executeBitSlicingOperation,
+    operationNames: HIGHLIGHTS,
+    operationFunction: executeHighlightOperation,
   },
 ];
 

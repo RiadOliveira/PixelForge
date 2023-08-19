@@ -1,20 +1,12 @@
-import { OperationData } from 'types/operations/OperationData';
 import { fillImagePixelWithSameValues } from 'utils/auxiliar/fillImagePixelWithSameValues';
 
-export const executeBitSlicingOperation = (
-  [image]: HTMLCanvasElement[],
-  [
-    {
-      values: [bitsQuantity],
-    },
-  ]: OperationData[],
-  _normalizeValues: boolean,
+export const executeBitSlicing = (
+  { width, height }: HTMLCanvasElement,
+  imageData: Uint8ClampedArray,
+  bitsQuantity: number,
 ) => {
-  const { width, height } = image;
-  const imageContext = image.getContext('2d')!;
-  const { data: imageData } = imageContext.getImageData(0, 0, width, height);
-
   const resultCanvases = [] as HTMLCanvasElement[];
+
   for (let bit = 0; bit < bitsQuantity; bit++) {
     const bitPlaneCanvas = document.createElement('canvas');
     bitPlaneCanvas.width = width;

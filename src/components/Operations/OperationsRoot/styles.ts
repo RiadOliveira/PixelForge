@@ -32,7 +32,7 @@ export const Container = styled.section`
   }
 
   &:hover {
-    max-height: 315px;
+    max-height: 350px;
     padding-bottom: 16px;
 
     *:not(h4) {

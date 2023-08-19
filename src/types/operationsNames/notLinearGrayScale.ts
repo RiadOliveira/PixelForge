@@ -3,6 +3,8 @@ export const NOT_LINEAR_GRAYSCALE_OPERATIONS = {
   SQUARE_ROOT: 'Raíz quadrada',
   EXPONENTIAL: 'Exponencial',
   SQUARE: 'Quadrado',
+  BINARY: 'Binário',
+  REVERSE: 'Inverso',
 };
 
 export type NotLinearGrayscaleOperationKey =

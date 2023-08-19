@@ -23,15 +23,7 @@ import {
   NOT_LINEAR_GRAYSCALE_OPERATIONS,
   NotLinearGrayscaleOperationKey,
 } from 'types/operationsNames/notLinearGrayScale';
-import {
-  ADDITIONAL_GRAYSCALE_OPERATIONS,
-  AdditionalGrayscaleOperationKey,
-} from 'types/operationsNames/additionalGrayscale';
-import {
-  GAMMA_AND_EQUALIZATION,
-  GammaAndEqualizationKey,
-} from 'types/operationsNames/gammaAndEqualization';
-import { BIT_SLICING, BitSlicingKey } from 'types/operationsNames/bitSlicing';
+import { HIGHLIGHTS, HighlightKey } from 'types/operationsNames/highlight';
 
 export const OperationPanel = () => {
   const { selectedImages, normalizeValues, setNormalizeValues } = useImages();
@@ -124,41 +116,17 @@ export const OperationPanel = () => {
           )}
         </Operations.Root>
 
-        <Operations.Root title="Grayscale - Adicionais">
-          {Object.entries(ADDITIONAL_GRAYSCALE_OPERATIONS).map(
-            ([key, value]) => (
-              <Operations.Operation
-                key={key}
-                title={value}
-                operationKey={key as AdditionalGrayscaleOperationKey}
-              />
-            ),
-          )}
-        </Operations.Root>
-
-        <Operations.Root title="Gama e Equalização">
-          {Object.entries(GAMMA_AND_EQUALIZATION).map(([key, value]) => (
+        <Operations.Root title="Realce">
+          {Object.entries(HIGHLIGHTS).map(([key, value]) => (
             <Operations.Operation
               key={key}
               title={value}
-              operationKey={key as GammaAndEqualizationKey}
+              operationKey={key as HighlightKey}
             >
               {selectedImages.length > 0 &&
-                (key as GammaAndEqualizationKey) === 'GAMMA_CORRECTION' && (
+                (key as HighlightKey) !== 'HISTOGRAM_EQUALIZATION' && (
                   <Operations.Input />
                 )}
-            </Operations.Operation>
-          ))}
-        </Operations.Root>
-
-        <Operations.Root title="Fatiamento de bits">
-          {Object.entries(BIT_SLICING).map(([key, value]) => (
-            <Operations.Operation
-              key={key}
-              title={value}
-              operationKey={key as BitSlicingKey}
-            >
-              {selectedImages.length > 0 && <Operations.Input />}
             </Operations.Operation>
           ))}
         </Operations.Root>
