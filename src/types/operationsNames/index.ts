@@ -1,5 +1,6 @@
 import { ARITHMETICS_OPERATIONS } from './arithmetics';
 import { DECOMPOSITIONS } from './decompositions';
+import { EDGE_PRESERVING_LOW_PASS_FILTERS } from './edgePreservingLowPassFilters';
 import { HIGHLIGHTS } from './highlight';
 import { LINEAR_GRAYSCALE_OPERATIONS } from './linearGrayScale';
 import { LOGICS_OPERATIONS } from './logics';
@@ -20,6 +21,7 @@ export const OPERATIONS = {
   ...NOT_LINEAR_GRAYSCALE_OPERATIONS,
   ...HIGHLIGHTS,
   ...LOW_PASS_FILTERS,
+  ...EDGE_PRESERVING_LOW_PASS_FILTERS,
 } as const;
 
 export type OperationKey = keyof typeof OPERATIONS;

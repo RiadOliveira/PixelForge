@@ -4,6 +4,7 @@ import { getGrayLevelsOfImage } from 'utils/auxiliar/getGrayLevelsOfImage';
 import { handleNewIntervalPixelsUpdate } from './handleNewIntervalPixelsUpdate';
 import { handleByPartsPixelsUpdate } from './handleByPartsPixelsUpdate';
 import { LinearGrayscaleOperationKey } from 'types/operationsNames/linearGrayScale';
+import { generateImageAndResultCanvasData } from 'utils/auxiliar/generateImageAndResultCanvasData';
 
 const HANDLE_PIXELS_UPDATE = {
   NEW_INTERVAL: handleNewIntervalPixelsUpdate,
@@ -15,18 +16,12 @@ export const executeLinearGrayscaleOperation = (
   operationsData: OperationData[],
 ) => {
   const [{ key }] = operationsData;
-  const { width, height } = image;
+  const {
+    originalImage: { imageData },
+    resultCanvas: { canvas, context, imageData: resultImageData },
+  } = generateImageAndResultCanvasData(image);
 
-  const resultCanvas = document.createElement('canvas');
-  resultCanvas.width = width;
-  resultCanvas.height = height;
-
-  const resultContext = resultCanvas.getContext('2d')!;
-  const resultImageData = resultContext.getImageData(0, 0, width, height);
-  const imageContext = image.getContext('2d')!;
-  const { data: imageData } = imageContext.getImageData(0, 0, width, height);
-
-  const imageGrayLevels = getGrayLevelsOfImage(imageData);
+  const imageGrayLevels = getGrayLevelsOfImage(imageData.data);
   const factorsA = operationsData.map(({ values }) =>
     getFactorA(imageGrayLevels, values),
   );
@@ -35,13 +30,13 @@ export const executeLinearGrayscaleOperation = (
     HANDLE_PIXELS_UPDATE[key as LinearGrayscaleOperationKey];
 
   handlePixelsUpdate(
-    [resultImageData.data, imageData],
+    [resultImageData.data, imageData.data],
     intervals,
     imageGrayLevels,
     factorsA,
   );
-  resultContext.putImageData(resultImageData, 0, 0);
-  return [resultCanvas];
+  context.putImageData(resultImageData, 0, 0);
+  return [canvas];
 };
 
 const getFactorA = (

@@ -3,28 +3,24 @@ import { NotLinearGrayscaleOperationKey } from 'types/operationsNames/notLinearG
 import { handleBinaryPixelsUpdate } from './handleBinaryPixelsUpdate';
 import { handleReversePixelsUpdate } from './handleReversePixelsUpdate';
 import { handleNotLinearWithFunctionPixelsUpdate } from './handleNotLinearWithFunctionPixelsUpdate';
+import { generateImageAndResultCanvasData } from 'utils/auxiliar/generateImageAndResultCanvasData';
 
 export const executeNotLinearGrayscaleOperation = (
   [image]: HTMLCanvasElement[],
   [{ key }]: OperationData[],
 ) => {
-  const { width, height } = image;
-
-  const resultCanvas = document.createElement('canvas');
-  resultCanvas.width = width;
-  resultCanvas.height = height;
-
-  const resultContext = resultCanvas.getContext('2d')!;
-  const resultImageData = resultContext.getImageData(0, 0, width, height);
-  const imageContext = image.getContext('2d')!;
-  const { data: imageData } = imageContext.getImageData(0, 0, width, height);
+  const {
+    originalImage: { imageData },
+    resultCanvas: { canvas, context, imageData: resultImageData },
+  } = generateImageAndResultCanvasData(image);
 
   handleUpdatePixels(key as NotLinearGrayscaleOperationKey, [
     resultImageData.data,
-    imageData,
+    imageData.data,
   ]);
-  resultContext.putImageData(resultImageData, 0, 0);
-  return [resultCanvas];
+  context.putImageData(resultImageData, 0, 0);
+
+  return [canvas];
 };
 
 const handleUpdatePixels = (

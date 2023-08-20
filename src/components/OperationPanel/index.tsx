@@ -1,30 +1,34 @@
 import { ChangeSectionButton, Container, OperationsContainer } from './styles';
 import { useImages } from 'hooks/images';
 import { Checkbox } from 'components/Checkbox';
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { FirstOperationSection } from './OperationsSections/FirstOperationSection';
 import { SecondOperationSection } from './OperationsSections/SecondOperationSection';
 
 const SECTIONS = {
   first: {
     name: 'Primeira Unidade',
-    section: FirstOperationSection,
+    Section: FirstOperationSection,
   },
   second: {
     name: 'Segunda Unidade',
-    section: SecondOperationSection,
+    Section: SecondOperationSection,
   },
 };
 
 export const OperationPanel = () => {
   const { normalizeValues, setNormalizeValues } = useImages();
-  const [selectedSection, setSelectedSection] =
+  const [selectedSectionKey, setSelectedSectionKey] =
     useState<keyof typeof SECTIONS>('first');
 
+  const { name, Section } = useMemo(
+    () => SECTIONS[selectedSectionKey],
+    [selectedSectionKey],
+  );
   const handleChangeSection = useCallback(
     () =>
-      setSelectedSection(previousSelected =>
-        previousSelected === 'first' ? 'second' : 'first',
+      setSelectedSectionKey(previousSelectedKey =>
+        previousSelectedKey === 'first' ? 'second' : 'first',
       ),
     [],
   );
@@ -40,11 +44,10 @@ export const OperationPanel = () => {
       />
 
       <OperationsContainer>
-        {SECTIONS[selectedSection].section()}
+        <Section />
       </OperationsContainer>
-
       <ChangeSectionButton type="button" onClick={handleChangeSection}>
-        {SECTIONS[selectedSection].name}
+        {name}
       </ChangeSectionButton>
     </Container>
   );

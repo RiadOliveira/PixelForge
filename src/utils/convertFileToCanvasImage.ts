@@ -1,5 +1,6 @@
 import { drawImageOnCanvas } from './auxiliar/drawImageOnCanvas';
 import { Image as ImageJs } from 'image-js';
+import { generateResultCanvasData } from './auxiliar/generateResultCanvasData';
 
 export const convertFileToCanvasImage = (
   file: File,
@@ -35,16 +36,14 @@ const convertPGMDataToCanvas = (pgmData: string) => {
   const [_header, widthHeight, _maxVal, ...pixelDataArray] = lines;
   const [width, height] = widthHeight.split(' ').map(Number);
 
-  const canvas = document.createElement('canvas');
-  canvas.width = width;
-  canvas.height = height;
-  const context = canvas.getContext('2d')!;
+  const { canvas, context, imageData } = generateResultCanvasData(
+    width,
+    height,
+  );
 
   const pixelArray = pixelDataArray
     .map(line => line.trim().split(' ').map(Number))
     .flat();
-
-  const imageData = context.createImageData(canvas.width, canvas.height);
   const pixelCount = pixelArray.length;
 
   for (let i = 0, j = 0; i < pixelCount; i++, j += 4) {
@@ -76,22 +75,19 @@ const convertTIFFArrayBufferToCanvas = async (arrayBuffer: ArrayBuffer) => {
   const image = await ImageJs.load(arrayBuffer);
   const { width, height } = image;
 
-  const canvas = document.createElement('canvas');
-  canvas.width = width;
-  canvas.height = height;
-  const context = canvas.getContext('2d')!;
+  const { canvas, context, imageData } = generateResultCanvasData(
+    width,
+    height,
+  );
 
-  const imageData = context.createImageData(width, height);
   const pixelData = image.data;
-
-  const imageDataData = imageData.data;
   const pixelDataLength = pixelData.length;
 
   for (let i = 0, j = 0; i < pixelDataLength; i++, j += 4) {
-    imageDataData[j] = pixelData[i++];
-    imageDataData[j + 1] = pixelData[i++];
-    imageDataData[j + 2] = pixelData[i++];
-    imageDataData[j + 3] = pixelData[i];
+    imageData.data[j] = pixelData[i++];
+    imageData.data[j + 1] = pixelData[i++];
+    imageData.data[j + 2] = pixelData[i++];
+    imageData.data[j + 3] = pixelData[i];
   }
 
   context.putImageData(imageData, 0, 0);

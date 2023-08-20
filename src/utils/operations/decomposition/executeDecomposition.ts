@@ -7,6 +7,7 @@ import {
   convertRgbToImageData,
   convertYuvToImageData,
 } from 'utils/auxiliar/colorSpaceToImageDataConversions';
+import { generateResultCanvasData } from 'utils/auxiliar/generateResultCanvasData';
 import { rgbToCmyk, rgbToHsb, rgbToYuv } from 'utils/auxiliar/rgbConversions';
 
 const DECOMPOSITION_FUNCTIONS = {
@@ -32,32 +33,20 @@ export const executeDecomposition = (
   [image]: HTMLCanvasElement[],
   [{ key }]: OperationData[],
 ) => {
-  const resultCanvasesData = generateResultCanvasesData(key.length, image);
+  const { width, height } = image;
+  const resultCanvasesQuantity = key.length;
+
+  const resultCanvasesData = [] as CanvasData[];
+  for (let ind = 0; ind < resultCanvasesQuantity; ind++) {
+    const canvasData = generateResultCanvasData(width, height);
+    resultCanvasesData.push(canvasData);
+  }
   updateCanvasesImageData(resultCanvasesData, image, key as DecompositionsKey);
 
   return resultCanvasesData.map(({ canvas, context, imageData }) => {
     context.putImageData(imageData, 0, 0);
     return canvas;
   });
-};
-
-const generateResultCanvasesData = (
-  resultCanvasQuantity: number,
-  { width, height }: HTMLCanvasElement,
-) => {
-  const resultCanvasesData = [] as CanvasData[];
-
-  for (let ind = 0; ind < resultCanvasQuantity; ind++) {
-    const canvas = document.createElement('canvas');
-    canvas.width = width;
-    canvas.height = height;
-
-    const context = canvas.getContext('2d')!;
-    const data = context.getImageData(0, 0, width, height);
-    resultCanvasesData.push({ canvas, context, imageData: data });
-  }
-
-  return resultCanvasesData;
 };
 
 const updateCanvasesImageData = (

@@ -2,6 +2,7 @@ import { OperationData } from 'types/operations/OperationData';
 import { executeEqualization } from './executeEqualization';
 import { executeGammaCorrection } from './executeGammaCorrection';
 import { executeBitSlicing } from './executeBitSlicing';
+import { generateResultCanvasData } from 'utils/auxiliar/generateResultCanvasData';
 
 export const executeHighlightOperation = (
   [image]: HTMLCanvasElement[],
@@ -15,23 +16,22 @@ export const executeHighlightOperation = (
     return executeBitSlicing(image, imageData, values[0]);
   }
 
-  const resultCanvas = document.createElement('canvas');
-  resultCanvas.width = width;
-  resultCanvas.height = height;
-
-  const resultContext = resultCanvas.getContext('2d')!;
-  const resultImageData = resultContext.getImageData(0, 0, width, height);
+  const {
+    canvas,
+    context,
+    imageData: resultImageData,
+  } = generateResultCanvasData(width, height);
 
   const resultCanvases = (() => {
     const imagesData = [resultImageData.data, imageData];
     if (key === 'HISTOGRAM_EQUALIZATION') {
-      return executeEqualization(resultCanvas, imagesData);
+      return executeEqualization(canvas, imagesData);
     }
 
     executeGammaCorrection(imagesData, values[0]);
-    return [resultCanvas];
+    return [canvas];
   })();
 
-  resultContext.putImageData(resultImageData, 0, 0);
+  context.putImageData(resultImageData, 0, 0);
   return resultCanvases;
 };

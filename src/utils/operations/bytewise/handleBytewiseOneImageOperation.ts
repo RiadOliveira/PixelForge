@@ -1,6 +1,7 @@
 import { RGBValuesData } from 'types/RGBValuesData';
 import { BytewiseOperation } from 'types/operations/BytewiseOperations';
 import { generateDefaultRGBValuesData } from 'utils/auxiliar/generateDefaultRGBValuesData';
+import { generateImageAndResultCanvasData } from 'utils/auxiliar/generateImageAndResultCanvasData';
 import { getRGBAColorOfIndex } from 'utils/auxiliar/getRGBAColorOfIndex';
 import { transferValuesToNormalizedDataArray } from 'utils/auxiliar/transferValuesToNormalizedDataArray';
 import { updateRGBValuesData } from 'utils/auxiliar/updateRGBValuesData';
@@ -11,19 +12,17 @@ export const handleBytewiseOneImageOperation = (
   bytewiseOperation: BytewiseOperation,
   normalizeValues: boolean,
 ) => {
-  const { width, height } = image;
-
-  const resultCanvas = document.createElement('canvas');
-  resultCanvas.width = width;
-  resultCanvas.height = height;
-
-  const resultContext = resultCanvas.getContext('2d')!;
-  const resultImageData = resultContext.getImageData(0, 0, width, height);
-  const imageContext = image.getContext('2d')!;
-  const { data: imageData } = imageContext.getImageData(0, 0, width, height);
+  const {
+    originalImage: { imageData },
+    resultCanvas: {
+      canvas: resultCanvas,
+      context: resultContext,
+      imageData: resultImageData,
+    },
+  } = generateImageAndResultCanvasData(image);
 
   handleUpdateCanvas(
-    [resultImageData.data, imageData],
+    [resultImageData.data, imageData.data],
     inputValue,
     bytewiseOperation,
     normalizeValues,
