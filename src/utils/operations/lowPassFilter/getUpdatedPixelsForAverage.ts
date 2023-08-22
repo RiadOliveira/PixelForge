@@ -12,10 +12,7 @@ export const getUpdatedPixelsForAverage = (
 
     for (let x = 0; x < windowLength; x++) {
       const xValue = windowArray[x] * 4;
-      const neighborPixelIndex = Math.min(
-        imageData.length - 4,
-        Math.max(0, yValue + xValue),
-      );
+      const neighborPixelIndex = yValue + xValue;
 
       totalValue += calculateTotalValue(imageData, neighborPixelIndex);
     }

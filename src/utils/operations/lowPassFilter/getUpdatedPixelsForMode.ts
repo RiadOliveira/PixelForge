@@ -14,10 +14,7 @@ export const getUpdatedPixelsForMode = (
 
     for (let x = 0; x < windowLength; x++) {
       const xValue = windowArray[x] * 4;
-      const neighborPixelIndex = Math.min(
-        imageData.length - 4,
-        Math.max(0, yValue + xValue),
-      );
+      const neighborPixelIndex = yValue + xValue;
 
       const colorKey = getColorFrequencyKey(imageData, neighborPixelIndex);
       colorFrequencyMap[colorKey] = (colorFrequencyMap[colorKey] ?? 0) + 1;
