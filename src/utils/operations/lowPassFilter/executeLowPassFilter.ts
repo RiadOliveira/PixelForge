@@ -6,6 +6,10 @@ import { getUpdatedPixelsForMaximum } from './getUpdatedPixelsForMaximum';
 import { getUpdatedPixelsForMinimum } from './getUpdatedPixelsForMinimum';
 import { getUpdatedPixelsForMode } from './getUpdatedPixelsForMode';
 import { generateImageAndResultCanvasData } from 'utils/auxiliar/generateImageAndResultCanvasData';
+import { getUpdatedPixelsForKawahara } from './getUpdatedPixelsForKawahara';
+import { getUpdatedPixelsForTomitaTsuji } from './getUpdatedPixelsForTomitaTsuji';
+import { getUpdatedPixelsForNagaoeMatsuyama } from './getUpdatedPixelsForNagaoeMatsuyama';
+import { getUpdatedPixelsForSomboonkaew } from './getUpdatedPixelsForSomboonkaew';
 
 type GetUpdatedPixelsFunction = (
   windowArray: number[],
@@ -22,6 +26,10 @@ const GET_UPDATED_PIXELS_FUNCTIONS: {
   MAXIMUM: getUpdatedPixelsForMaximum,
   MINIMUM: getUpdatedPixelsForMinimum,
   MODE: getUpdatedPixelsForMode,
+  KAWAHARA: getUpdatedPixelsForKawahara,
+  TOMITA_TSUJI: getUpdatedPixelsForTomitaTsuji,
+  NAGAOE_MATSUYAMA: getUpdatedPixelsForNagaoeMatsuyama,
+  SOMBOONKAEW: getUpdatedPixelsForSomboonkaew,
 };
 
 export const executeLowPassFilter = (

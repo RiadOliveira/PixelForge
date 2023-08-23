@@ -1,10 +1,6 @@
 import { Operations } from 'components/Operations';
 import { useImages } from 'hooks/images';
 import {
-  EDGE_PRESERVING_LOW_PASS_FILTERS,
-  EdgePreservingLowPassFiltersKey,
-} from 'types/operationsNames/edgePreservingLowPassFilters';
-import {
   HIGHLIGHTS,
   HighlightOperationKey,
 } from 'types/operationsNames/highlight';
@@ -34,7 +30,7 @@ export const SecondOperationSection = () => {
         ))}
       </Operations.Root>
 
-      <Operations.Root title="Passa-baixa">
+      <Operations.Root title="Filtros passa-baixa">
         {Object.entries(LOW_PASS_FILTERS).map(([key, value]) => (
           <Operations.Operation
             key={key}
@@ -46,18 +42,6 @@ export const SecondOperationSection = () => {
             )}
           </Operations.Operation>
         ))}
-      </Operations.Root>
-
-      <Operations.Root title="Passa-baixas com bordas">
-        {Object.entries(EDGE_PRESERVING_LOW_PASS_FILTERS).map(
-          ([key, value]) => (
-            <Operations.Operation
-              key={key}
-              title={value}
-              operationKey={key as EdgePreservingLowPassFiltersKey}
-            />
-          ),
-        )}
       </Operations.Root>
     </>
   );

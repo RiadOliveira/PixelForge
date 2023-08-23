@@ -4,14 +4,13 @@ export const getUpdatedPixelsForMinimum = (
   imageWidth: number,
   imageData: Uint8ClampedArray,
 ) => {
-  const windowLength = windowArray.length;
   let minValue = Infinity;
 
-  for (let y = 0; y < windowLength; y++) {
-    const yValue = pixelIndex + windowArray[y] * imageWidth * 4;
+  for (const yOffset of windowArray) {
+    const yValue = pixelIndex + yOffset * imageWidth * 4;
 
-    for (let x = 0; x < windowLength; x++) {
-      const xValue = windowArray[x] * 4;
+    for (const xOffset of windowArray) {
+      const xValue = xOffset * 4;
       const neighborPixelIndex = yValue + xValue;
 
       minValue = Math.min(
