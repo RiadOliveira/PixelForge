@@ -2,7 +2,7 @@ import { OperationData } from 'types/operations/OperationData';
 import { executeEqualization } from './executeEqualization';
 import { executeGammaCorrection } from './executeGammaCorrection';
 import { executeBitSlicing } from './executeBitSlicing';
-import { generateResultCanvasData } from 'utils/auxiliar/generateResultCanvasData';
+import { generateCanvasData } from 'utils/auxiliar/generateCanvasData';
 
 export const executeHighlightOperation = (
   [image]: HTMLCanvasElement[],
@@ -20,7 +20,7 @@ export const executeHighlightOperation = (
     canvas,
     context,
     imageData: resultImageData,
-  } = generateResultCanvasData(width, height);
+  } = generateCanvasData(width, height);
 
   const resultCanvases = (() => {
     const imagesData = [resultImageData.data, imageData];

@@ -58,10 +58,10 @@ export const executeLowPassFilter = (
       imageData.data,
     );
 
-    updatedPixels.forEach(
-      (pixel, pixelIndex) => (resultImageData.data[ind + pixelIndex] = pixel),
-    );
-    resultImageData.data[ind + 3] = 255;
+    updatedPixels.forEach((pixel, pixelIndex) => {
+      resultImageData.data[ind + pixelIndex] = pixel;
+    });
+    resultImageData.data[ind + 3] = imageData.data[ind + 3];
   }
 
   context.putImageData(resultImageData, 0, 0);

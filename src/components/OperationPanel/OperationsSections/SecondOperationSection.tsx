@@ -1,6 +1,10 @@
 import { Operations } from 'components/Operations';
 import { useImages } from 'hooks/images';
 import {
+  HIGH_PASS_FILTERS,
+  HighPassFiltersKey,
+} from 'types/operationsNames/highPassFilters';
+import {
   HIGHLIGHTS,
   HighlightOperationKey,
 } from 'types/operationsNames/highlight';
@@ -41,6 +45,16 @@ export const SecondOperationSection = () => {
               <Operations.Input placeholder="Tamanho da janela" />
             )}
           </Operations.Operation>
+        ))}
+      </Operations.Root>
+
+      <Operations.Root title="Filtros passa-alta">
+        {Object.entries(HIGH_PASS_FILTERS).map(([key, value]) => (
+          <Operations.Operation
+            key={key}
+            title={value}
+            operationKey={key as HighPassFiltersKey}
+          />
         ))}
       </Operations.Root>
     </>

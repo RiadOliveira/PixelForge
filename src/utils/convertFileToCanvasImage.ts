@@ -1,6 +1,6 @@
 import { drawImageOnCanvas } from './auxiliar/drawImageOnCanvas';
 import { Image as ImageJs } from 'image-js';
-import { generateResultCanvasData } from './auxiliar/generateResultCanvasData';
+import { generateCanvasData } from './auxiliar/generateCanvasData';
 
 export const convertFileToCanvasImage = (
   file: File,
@@ -36,10 +36,7 @@ const convertPGMDataToCanvas = (pgmData: string) => {
   const [_header, widthHeight, _maxVal, ...pixelDataArray] = lines;
   const [width, height] = widthHeight.split(' ').map(Number);
 
-  const { canvas, context, imageData } = generateResultCanvasData(
-    width,
-    height,
-  );
+  const { canvas, context, imageData } = generateCanvasData(width, height);
 
   const pixelArray = pixelDataArray
     .map(line => line.trim().split(' ').map(Number))
@@ -75,10 +72,7 @@ const convertTIFFArrayBufferToCanvas = async (arrayBuffer: ArrayBuffer) => {
   const image = await ImageJs.load(arrayBuffer);
   const { width, height } = image;
 
-  const { canvas, context, imageData } = generateResultCanvasData(
-    width,
-    height,
-  );
+  const { canvas, context, imageData } = generateCanvasData(width, height);
 
   const pixelData = image.data;
   const pixelDataLength = pixelData.length;

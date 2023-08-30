@@ -1,5 +1,5 @@
 import { CanvasData } from 'types/CanvasData';
-import { generateResultCanvasData } from './generateResultCanvasData';
+import { generateCanvasData } from './generateCanvasData';
 
 interface ImageAndResultCanvasData {
   originalImage: CanvasData;
@@ -25,6 +25,6 @@ export const generateImageAndResultCanvasData = (
       context: originalImageContext,
       imageData: originalImageData,
     },
-    resultCanvas: generateResultCanvasData(width, height),
+    resultCanvas: generateCanvasData(width, height),
   };
 };

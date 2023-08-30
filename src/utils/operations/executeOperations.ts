@@ -18,6 +18,8 @@ import { HIGHLIGHTS } from 'types/operationsNames/highlight';
 import { executeHighlightOperation } from './highlight/executeHighlightOperation';
 import { LOW_PASS_FILTERS } from 'types/operationsNames/lowPassFilters';
 import { executeLowPassFilter } from './lowPassFilter/executeLowPassFilter';
+import { HIGH_PASS_FILTERS } from 'types/operationsNames/highPassFilters';
+import { executeHighPassFilter } from './highPassFilter/executeHighPassFilter';
 
 type OperationFunction = (
   images: HTMLCanvasElement[],
@@ -66,6 +68,10 @@ const OPERATIONS_FUNCTIONS_MAPPED_BY_NAMES: OperationFunctionMappedByNames[] = [
   {
     operationNames: LOW_PASS_FILTERS,
     operationFunction: executeLowPassFilter,
+  },
+  {
+    operationNames: HIGH_PASS_FILTERS,
+    operationFunction: executeHighPassFilter,
   },
 ];
 

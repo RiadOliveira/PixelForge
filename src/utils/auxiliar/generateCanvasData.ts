@@ -1,6 +1,6 @@
 import { CanvasData } from 'types/CanvasData';
 
-export const generateResultCanvasData = (
+export const generateCanvasData = (
   width: number,
   height: number,
 ): CanvasData => {

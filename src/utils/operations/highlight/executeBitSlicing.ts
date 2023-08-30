@@ -1,5 +1,5 @@
 import { fillImagePixelWithSameValues } from 'utils/auxiliar/fillImagePixelWithSameValues';
-import { generateResultCanvasData } from 'utils/auxiliar/generateResultCanvasData';
+import { generateCanvasData } from 'utils/auxiliar/generateCanvasData';
 
 export const executeBitSlicing = (
   { width, height }: HTMLCanvasElement,
@@ -13,7 +13,7 @@ export const executeBitSlicing = (
       canvas,
       context,
       imageData: resultImageData,
-    } = generateResultCanvasData(width, height);
+    } = generateCanvasData(width, height);
 
     for (let ind = 0; ind < imageData.length; ind += 4) {
       const pixelValue = imageData[ind];

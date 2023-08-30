@@ -69,7 +69,7 @@ const updateCanvasPixelsUsingImageAndInput = (
   for (let ind = 0; ind < resultCanvasData.length; ind++) {
     const rgbaColor = getRGBAColorOfIndex(ind);
 
-    if (rgbaColor === 'ALPHA') resultCanvasData[ind] = 255;
+    if (rgbaColor === 'ALPHA') resultCanvasData[ind] = imageData[ind];
     else {
       resultCanvasData[ind] = bytewiseOperation(imageData[ind], inputValue);
       updateRGBValuesData(rgbValuesData, rgbaColor, resultCanvasData[ind]);

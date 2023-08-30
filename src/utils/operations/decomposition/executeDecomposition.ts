@@ -7,7 +7,7 @@ import {
   convertRgbToImageData,
   convertYuvToImageData,
 } from 'utils/auxiliar/colorSpaceToImageDataConversions';
-import { generateResultCanvasData } from 'utils/auxiliar/generateResultCanvasData';
+import { generateCanvasData } from 'utils/auxiliar/generateCanvasData';
 import { rgbToCmyk, rgbToHsb, rgbToYuv } from 'utils/auxiliar/rgbConversions';
 
 const DECOMPOSITION_FUNCTIONS = {
@@ -38,7 +38,7 @@ export const executeDecomposition = (
 
   const resultCanvasesData = [] as CanvasData[];
   for (let ind = 0; ind < resultCanvasesQuantity; ind++) {
-    const canvasData = generateResultCanvasData(width, height);
+    const canvasData = generateCanvasData(width, height);
     resultCanvasesData.push(canvasData);
   }
   updateCanvasesImageData(resultCanvasesData, image, key as DecompositionsKey);
@@ -75,7 +75,7 @@ const updateCanvasesImageData = (
       } = resultCanvasesData[index];
 
       for (let i = 0; i < 3; i++) data[ind + i] = dataValues[i];
-      data[ind + 3] = 255;
+      data[ind + 3] = imageData[ind + 3];
     });
   }
 };

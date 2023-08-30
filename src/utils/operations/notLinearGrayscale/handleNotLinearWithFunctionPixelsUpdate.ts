@@ -35,6 +35,6 @@ export const handleNotLinearWithFunctionPixelsUpdate = (
     for (let rgbInd = 0; rgbInd < 3; rgbInd++) {
       resultData[ind + rgbInd] = Math.round(parsedGrayValue);
     }
-    resultData[ind + 3] = 255;
+    resultData[ind + 3] = imageData[ind + 3];
   }
 };
