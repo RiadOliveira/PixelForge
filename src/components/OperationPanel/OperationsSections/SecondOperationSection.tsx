@@ -54,7 +54,11 @@ export const SecondOperationSection = () => {
             key={key}
             title={value}
             operationKey={key as HighPassFiltersKey}
-          />
+          >
+            {anyImagesSelected && key === 'HIGHT_BOOST' && (
+              <Operations.Input placeholder="Fator de amplificação" />
+            )}
+          </Operations.Operation>
         ))}
       </Operations.Root>
     </>

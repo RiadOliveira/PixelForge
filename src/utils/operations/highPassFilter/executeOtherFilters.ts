@@ -1,5 +1,6 @@
 import { OperationKey } from 'types/operationsNames';
 import { HighPassFiltersKey } from 'types/operationsNames/highPassFilters';
+import { generateImageAndResultCanvasData } from 'utils/auxiliar/generateImageAndResultCanvasData';
 
 type OtherFiltersKey = Exclude<HighPassFiltersKey, 'HIGHT_BOOST'>;
 
@@ -33,26 +34,34 @@ const OPERATIONS_MASKS: {
   ],
 };
 
-export const updatePixelsForOtherFilters = (
+export const executeOtherFilters = (
+  image: HTMLCanvasElement,
   key: OperationKey,
-  { width }: HTMLCanvasElement,
-  [resultCanvasData, imageData]: Uint8ClampedArray[],
 ) => {
-  const operationMask = OPERATIONS_MASKS[key as OtherFiltersKey];
+  const {
+    originalImage: {
+      imageData: { data: imageData },
+    },
+    resultCanvas: { canvas, context, imageData: resultCanvasData },
+  } = generateImageAndResultCanvasData(image);
 
+  const operationMask = OPERATIONS_MASKS[key as OtherFiltersKey];
   for (let ind = 0; ind < imageData.length; ind += 4) {
     const convolvedPixels = getConvolvedPixels(
       imageData,
-      width,
+      image.width,
       ind,
       operationMask,
     );
 
     convolvedPixels.forEach((pixel, i) => {
-      resultCanvasData[ind + i] = Math.min(255, Math.max(0, pixel));
+      resultCanvasData.data[ind + i] = Math.min(255, Math.max(0, pixel));
     });
-    resultCanvasData[ind + 3] = imageData[ind + 3];
+    resultCanvasData.data[ind + 3] = imageData[ind + 3];
   }
+
+  context.putImageData(resultCanvasData, 0, 0);
+  return [canvas];
 };
 
 const getConvolvedPixels = (
