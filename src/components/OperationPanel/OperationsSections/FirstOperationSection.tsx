@@ -6,7 +6,7 @@ import {
 } from 'types/operationsNames/arithmetics';
 import {
   DECOMPOSITIONS,
-  DecompositionsKey,
+  DecompositionKey,
 } from 'types/operationsNames/decompositions';
 import {
   LOGICS_OPERATIONS,
@@ -75,7 +75,7 @@ export const FirstOperationSection = () => {
           <Operations.Operation
             key={key}
             title={value}
-            operationKey={key as DecompositionsKey}
+            operationKey={key as DecompositionKey}
           />
         ))}
       </Operations.Root>

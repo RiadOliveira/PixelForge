@@ -3,6 +3,6 @@ export const DECOMPOSITIONS = {
   HSB: 'HSB',
   YUV: 'YUV',
   CMYK: 'CMYK',
-};
+} as const;
 
-export type DecompositionsKey = keyof typeof DECOMPOSITIONS;
+export type DecompositionKey = keyof typeof DECOMPOSITIONS;

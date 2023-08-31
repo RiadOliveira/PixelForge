@@ -5,16 +5,16 @@ import { handleNewIntervalPixelsUpdate } from './handleNewIntervalPixelsUpdate';
 import { handleByPartsPixelsUpdate } from './handleByPartsPixelsUpdate';
 import { LinearGrayscaleOperationKey } from 'types/operationsNames/linearGrayScale';
 import { generateImageAndResultCanvasData } from 'utils/auxiliar/generateImageAndResultCanvasData';
+import { OperationFunction } from 'types/operations/OperationFunction';
 
 const HANDLE_PIXELS_UPDATE = {
   NEW_INTERVAL: handleNewIntervalPixelsUpdate,
   BY_PARTS: handleByPartsPixelsUpdate,
 };
 
-export const executeLinearGrayscaleOperation = (
-  [image]: HTMLCanvasElement[],
-  operationsData: OperationData[],
-) => {
+export const executeLinearGrayscaleOperation: OperationFunction<
+  LinearGrayscaleOperationKey
+> = ([image], operationsData) => {
   const [{ key }] = operationsData;
   const {
     originalImage: { imageData },
@@ -26,8 +26,7 @@ export const executeLinearGrayscaleOperation = (
     getFactorA(imageGrayLevels, values),
   );
   const intervals = extractIntervalsFromOperationsData(operationsData);
-  const handlePixelsUpdate =
-    HANDLE_PIXELS_UPDATE[key as LinearGrayscaleOperationKey];
+  const handlePixelsUpdate = HANDLE_PIXELS_UPDATE[key];
 
   handlePixelsUpdate(
     [resultImageData.data, imageData.data],

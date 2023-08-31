@@ -1,8 +1,8 @@
-import { OperationData } from 'types/operations/OperationData';
 import { ZoomOperationKey } from 'types/operationsNames/zoom';
 import { handleReplicationOrExclusionPixelsUpdate } from './handleReplicationOrExclusionPixelsUpdate';
 import { handleInterpolationPixelsUpdate } from './handleInterpolationPixelsUpdate';
 import { handleAverageValuePixelsUpdate } from './handleAverageValuePixelsUpdate';
+import { OperationFunction } from 'types/operations/OperationFunction';
 
 const HANDLE_PIXELS_UPDATE = {
   ZOOM_IN_REPLICATION: handleReplicationOrExclusionPixelsUpdate,
@@ -11,16 +11,16 @@ const HANDLE_PIXELS_UPDATE = {
   ZOOM_OUT_AVERAGE_VALUE: handleAverageValuePixelsUpdate,
 };
 
-export const executeZoomOperation = (
-  [image]: HTMLCanvasElement[],
+export const executeZoomOperation: OperationFunction<ZoomOperationKey> = (
+  [image],
   [
     {
       key,
       values: [zoomFactor],
     },
-  ]: OperationData[],
+  ],
 ) => {
-  const parsedZoomFactor = parseZoomFactor(key as ZoomOperationKey, zoomFactor);
+  const parsedZoomFactor = parseZoomFactor(key, zoomFactor);
   const { width: imageWidth, height: imageHeight } = image;
 
   const resultCanvas = document.createElement('canvas');
@@ -43,7 +43,7 @@ export const executeZoomOperation = (
     imageHeight,
   );
 
-  const updatePixelsFunction = HANDLE_PIXELS_UPDATE[key as ZoomOperationKey];
+  const updatePixelsFunction = HANDLE_PIXELS_UPDATE[key];
   updatePixelsFunction(
     [resultCanvas, image],
     [resultImageData.data, imageData],

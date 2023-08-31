@@ -5,7 +5,7 @@ export const NOT_LINEAR_GRAYSCALE_OPERATIONS = {
   SQUARE: 'Quadrado',
   BINARY: 'Binário',
   REVERSE: 'Inverso',
-};
+} as const;
 
 export type NotLinearGrayscaleOperationKey =
   keyof typeof NOT_LINEAR_GRAYSCALE_OPERATIONS;

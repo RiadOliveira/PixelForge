@@ -1,6 +1,6 @@
 import { CanvasData } from 'types/CanvasData';
-import { OperationData } from 'types/operations/OperationData';
-import { DecompositionsKey } from 'types/operationsNames/decompositions';
+import { OperationFunction } from 'types/operations/OperationFunction';
+import { DecompositionKey } from 'types/operationsNames/decompositions';
 import {
   convertCmykToImageData,
   convertHsbToImageData,
@@ -29,9 +29,9 @@ const DECOMPOSITION_FUNCTIONS = {
   },
 };
 
-export const executeDecomposition = (
-  [image]: HTMLCanvasElement[],
-  [{ key }]: OperationData[],
+export const executeDecomposition: OperationFunction<DecompositionKey> = (
+  [image],
+  [{ key }],
 ) => {
   const { width, height } = image;
   const resultCanvasesQuantity = key.length;
@@ -41,7 +41,7 @@ export const executeDecomposition = (
     const canvasData = generateCanvasData(width, height);
     resultCanvasesData.push(canvasData);
   }
-  updateCanvasesImageData(resultCanvasesData, image, key as DecompositionsKey);
+  updateCanvasesImageData(resultCanvasesData, image, key);
 
   return resultCanvasesData.map(({ canvas, context, imageData }) => {
     context.putImageData(imageData, 0, 0);
@@ -52,7 +52,7 @@ export const executeDecomposition = (
 const updateCanvasesImageData = (
   resultCanvasesData: CanvasData[],
   image: HTMLCanvasElement,
-  decompositionKey: DecompositionsKey,
+  decompositionKey: DecompositionKey,
 ) => {
   const imageContext = image.getContext('2d')!;
   const { data: imageData } = imageContext.getImageData(

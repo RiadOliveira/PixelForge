@@ -6,6 +6,6 @@ export const TRANSFORMATIONS = {
   VERTICAL_REFLECTION: 'Reflexão Vertical',
   X_SHEARING: 'Cisalhamento em X',
   Y_SHEARING: 'Cisalhamento em Y',
-};
+} as const;
 
 export type TransformationKey = keyof typeof TRANSFORMATIONS;

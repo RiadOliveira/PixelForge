@@ -1,4 +1,5 @@
 import { OperationData } from 'types/operations/OperationData';
+import { OperationFunction } from 'types/operations/OperationFunction';
 import { TransformationKey } from 'types/operationsNames/transformations';
 import { multiplyMatrices } from 'utils/auxiliar/multiplyMatrices';
 
@@ -48,9 +49,9 @@ const GENERATE_TRANSFORMATION_MATRIX_FUNCTIONS: {
   ],
 };
 
-export const executeTransformations = (
-  [image]: HTMLCanvasElement[],
-  operationsData: OperationData[],
+export const executeTransformations: OperationFunction<TransformationKey> = (
+  [image],
+  operationsData,
 ) => {
   const { width: imageWidth, height: imageHeight } = image;
   const resultCanvas = document.createElement('canvas');
@@ -84,10 +85,12 @@ export const executeTransformations = (
   return [resultCanvas];
 };
 
-const generateTransformationMatrix = (operationsData: OperationData[]) =>
+const generateTransformationMatrix = (
+  operationsData: OperationData<TransformationKey>[],
+) =>
   operationsData.reduce((previous, { key, values }, ind) => {
     const generateMatrixFunction =
-      GENERATE_TRANSFORMATION_MATRIX_FUNCTIONS[key as TransformationKey];
+      GENERATE_TRANSFORMATION_MATRIX_FUNCTIONS[key];
 
     const currentMatrix = generateMatrixFunction(values);
     return ind === 0
@@ -97,7 +100,7 @@ const generateTransformationMatrix = (operationsData: OperationData[]) =>
 
 const getCanvasDimensionsAfterTransformation = (
   transformMatrix: number[][],
-  operationsData: OperationData[],
+  operationsData: OperationData<TransformationKey>[],
   canvas: HTMLCanvasElement,
 ) => {
   const translationIndex = operationsData.findIndex(

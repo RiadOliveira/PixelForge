@@ -1,4 +1,3 @@
-import { OperationKey } from 'types/operationsNames';
 import { HighPassFiltersKey } from 'types/operationsNames/highPassFilters';
 import { generateImageAndResultCanvasData } from 'utils/auxiliar/generateImageAndResultCanvasData';
 
@@ -36,7 +35,7 @@ const OPERATIONS_MASKS: {
 
 export const executeOtherFilters = (
   image: HTMLCanvasElement,
-  key: OperationKey,
+  key: OtherFiltersKey,
 ) => {
   const {
     originalImage: {
@@ -45,7 +44,7 @@ export const executeOtherFilters = (
     resultCanvas: { canvas, context, imageData: resultCanvasData },
   } = generateImageAndResultCanvasData(image);
 
-  const operationMask = OPERATIONS_MASKS[key as OtherFiltersKey];
+  const operationMask = OPERATIONS_MASKS[key];
   for (let ind = 0; ind < imageData.length; ind += 4) {
     const convolvedPixels = getConvolvedPixels(
       imageData,

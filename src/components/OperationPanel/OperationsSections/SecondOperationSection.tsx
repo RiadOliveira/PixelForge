@@ -1,6 +1,10 @@
 import { Operations } from 'components/Operations';
 import { useImages } from 'hooks/images';
 import {
+  HALFTONING_FILTERS,
+  HalftoningFiltersKey,
+} from 'types/operationsNames/halftoningFilters';
+import {
   HIGH_PASS_FILTERS,
   HighPassFiltersKey,
 } from 'types/operationsNames/highPassFilters';
@@ -59,6 +63,16 @@ export const SecondOperationSection = () => {
               <Operations.Input placeholder="Fator de amplificação" />
             )}
           </Operations.Operation>
+        ))}
+      </Operations.Root>
+
+      <Operations.Root title="Meios-tons">
+        {Object.entries(HALFTONING_FILTERS).map(([key, value]) => (
+          <Operations.Operation
+            key={key}
+            title={value}
+            operationKey={key as HalftoningFiltersKey}
+          />
         ))}
       </Operations.Root>
     </>

@@ -1,4 +1,3 @@
-import { OperationData } from 'types/operations/OperationData';
 import { getUpdatedPixelsForAverage } from './getUpdatedPixelsForAverage';
 import { LowPassFiltersKey } from 'types/operationsNames/lowPassFilters';
 import { getUpdatedPixelsForMedian } from './getUpdatedPixelsForMedian';
@@ -10,6 +9,7 @@ import { getUpdatedPixelsForKawahara } from './getUpdatedPixelsForKawahara';
 import { getUpdatedPixelsForTomitaTsuji } from './getUpdatedPixelsForTomitaTsuji';
 import { getUpdatedPixelsForNagaoeMatsuyama } from './getUpdatedPixelsForNagaoeMatsuyama';
 import { getUpdatedPixelsForSomboonkaew } from './getUpdatedPixelsForSomboonkaew';
+import { OperationFunction } from 'types/operations/OperationFunction';
 
 type GetUpdatedPixelsFunction = (
   windowArray: number[],
@@ -32,14 +32,14 @@ const GET_UPDATED_PIXELS_FUNCTIONS: {
   SOMBOONKAEW: getUpdatedPixelsForSomboonkaew,
 };
 
-export const executeLowPassFilter = (
-  [image]: HTMLCanvasElement[],
+export const executeLowPassFilter: OperationFunction<LowPassFiltersKey> = (
+  [image],
   [
     {
       key,
       values: [filterSize],
     },
-  ]: OperationData[],
+  ],
 ) => {
   const {
     originalImage: { imageData },
@@ -47,8 +47,7 @@ export const executeLowPassFilter = (
   } = generateImageAndResultCanvasData(image);
 
   const windowArray = generateWindowArray(filterSize);
-  const getUpdatedPixelsFunction =
-    GET_UPDATED_PIXELS_FUNCTIONS[key as LowPassFiltersKey];
+  const getUpdatedPixelsFunction = GET_UPDATED_PIXELS_FUNCTIONS[key];
 
   for (let ind = 0; ind < imageData.data.length; ind += 4) {
     const updatedPixels = getUpdatedPixelsFunction(

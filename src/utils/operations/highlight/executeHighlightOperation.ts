@@ -1,13 +1,13 @@
-import { OperationData } from 'types/operations/OperationData';
 import { executeEqualization } from './executeEqualization';
 import { executeGammaCorrection } from './executeGammaCorrection';
 import { executeBitSlicing } from './executeBitSlicing';
 import { generateCanvasData } from 'utils/auxiliar/generateCanvasData';
+import { OperationFunction } from 'types/operations/OperationFunction';
+import { HighlightOperationKey } from 'types/operationsNames/highlight';
 
-export const executeHighlightOperation = (
-  [image]: HTMLCanvasElement[],
-  [{ key, values }]: OperationData[],
-) => {
+export const executeHighlightOperation: OperationFunction<
+  HighlightOperationKey
+> = ([image], [{ key, values }]) => {
   const { width, height } = image;
   const imageContext = image.getContext('2d')!;
   const { data: imageData } = imageContext.getImageData(0, 0, width, height);

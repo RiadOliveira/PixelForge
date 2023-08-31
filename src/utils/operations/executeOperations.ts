@@ -20,58 +20,68 @@ import { LOW_PASS_FILTERS } from 'types/operationsNames/lowPassFilters';
 import { executeLowPassFilter } from './lowPassFilter/executeLowPassFilter';
 import { HIGH_PASS_FILTERS } from 'types/operationsNames/highPassFilters';
 import { executeHighPassFilter } from './highPassFilter/executeHighPassFilter';
+import { HALFTONING_FILTERS } from 'types/operationsNames/halftoningFilters';
+import { executeHalftoningFilter } from './halftoningFilter/executeHalftoningFilter';
+import { OperationKey } from 'types/operationsNames';
+import { OperationFunction } from 'types/operations/OperationFunction';
 
-type OperationFunction = (
-  images: HTMLCanvasElement[],
-  operationsData: OperationData[],
-  normalizeValues?: boolean,
-) => HTMLCanvasElement[];
-
-interface OperationFunctionMappedByNames {
-  operationNames: { [key: string]: string };
-  operationFunction: OperationFunction;
+interface OperationFunctionMappedByKeys {
+  operationKeys: OperationKey[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  operationFunction: OperationFunction<any>;
 }
 
-const OPERATIONS_FUNCTIONS_MAPPED_BY_NAMES: OperationFunctionMappedByNames[] = [
+const extractOperationKeys = <T extends OperationKey>(operationNamesObject: {
+  [key in T]: string;
+}) => Object.keys(operationNamesObject) as T[];
+
+const OPERATIONS_FUNCTIONS_MAPPED_BY_NAMES: OperationFunctionMappedByKeys[] = [
   {
-    operationNames: { ...ARITHMETICS_OPERATIONS, ...LOGICS_OPERATIONS },
+    operationKeys: [
+      ...extractOperationKeys(ARITHMETICS_OPERATIONS),
+      ...extractOperationKeys(LOGICS_OPERATIONS),
+    ],
     operationFunction: executeBytewiseOperation,
   },
   {
-    operationNames: TRANSFORMATIONS,
+    operationKeys: extractOperationKeys(TRANSFORMATIONS),
     operationFunction: executeTransformations,
   },
   {
-    operationNames: ZOOM_OPERATIONS,
+    operationKeys: extractOperationKeys(ZOOM_OPERATIONS),
     operationFunction: executeZoomOperation,
   },
   {
-    operationNames: DECOMPOSITIONS,
+    operationKeys: extractOperationKeys(DECOMPOSITIONS),
     operationFunction: executeDecomposition,
   },
   {
-    operationNames: PSEUDOCOLORIZATION_OPERATIONS,
+    operationKeys: extractOperationKeys(PSEUDOCOLORIZATION_OPERATIONS),
     operationFunction: executePseudocolorizationOperation,
   },
   {
-    operationNames: LINEAR_GRAYSCALE_OPERATIONS,
+    operationKeys: extractOperationKeys(LINEAR_GRAYSCALE_OPERATIONS),
     operationFunction: executeLinearGrayscaleOperation,
   },
   {
-    operationNames: NOT_LINEAR_GRAYSCALE_OPERATIONS,
+    operationKeys: extractOperationKeys(NOT_LINEAR_GRAYSCALE_OPERATIONS),
     operationFunction: executeNotLinearGrayscaleOperation,
   },
   {
-    operationNames: HIGHLIGHTS,
+    operationKeys: extractOperationKeys(HIGHLIGHTS),
     operationFunction: executeHighlightOperation,
   },
   {
-    operationNames: LOW_PASS_FILTERS,
+    operationKeys: extractOperationKeys(LOW_PASS_FILTERS),
     operationFunction: executeLowPassFilter,
   },
   {
-    operationNames: HIGH_PASS_FILTERS,
+    operationKeys: extractOperationKeys(HIGH_PASS_FILTERS),
     operationFunction: executeHighPassFilter,
+  },
+  {
+    operationKeys: extractOperationKeys(HALFTONING_FILTERS),
+    operationFunction: executeHalftoningFilter,
   },
 ];
 
@@ -80,10 +90,10 @@ export const executeOperations = (
   operationsData: OperationData[],
   normalizeValues = false,
 ): HTMLCanvasElement[] => {
-  const [{ key: operationKey }] = operationsData;
+  const [{ key }] = operationsData;
 
   const { operationFunction } = OPERATIONS_FUNCTIONS_MAPPED_BY_NAMES.find(
-    ({ operationNames }) => operationKey in operationNames,
+    ({ operationKeys }) => operationKeys.includes(key),
   )!;
   return operationFunction(images, operationsData, normalizeValues);
 };
