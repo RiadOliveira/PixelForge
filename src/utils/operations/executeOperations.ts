@@ -24,6 +24,8 @@ import { HALFTONING_FILTERS } from 'types/operationsNames/halftoningFilters';
 import { executeHalftoningFilter } from './halftoningFilter/executeHalftoningFilter';
 import { OperationKey } from 'types/operationsNames';
 import { OperationFunction } from 'types/operations/OperationFunction';
+import { DOTS_LINES_DETECTION } from 'types/operationsNames/dotsLinesDetection';
+import { executeDotsLinesDetection } from './dotsLinesDetection/executeDotsLinesDetection';
 
 interface OperationFunctionMappedByKeys {
   operationKeys: OperationKey[];
@@ -82,6 +84,10 @@ const OPERATIONS_FUNCTIONS_MAPPED_BY_NAMES: OperationFunctionMappedByKeys[] = [
   {
     operationKeys: extractOperationKeys(HALFTONING_FILTERS),
     operationFunction: executeHalftoningFilter,
+  },
+  {
+    operationKeys: extractOperationKeys(DOTS_LINES_DETECTION),
+    operationFunction: executeDotsLinesDetection,
   },
 ];
 

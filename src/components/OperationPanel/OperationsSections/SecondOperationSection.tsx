@@ -1,6 +1,10 @@
 import { Operations } from 'components/Operations';
 import { useImages } from 'hooks/images';
 import {
+  DOTS_LINES_DETECTION,
+  DotsLinesDetectionKey,
+} from 'types/operationsNames/dotsLinesDetection';
+import {
   HALFTONING_FILTERS,
   HalftoningFiltersKey,
 } from 'types/operationsNames/halftoningFilters';
@@ -73,6 +77,18 @@ export const SecondOperationSection = () => {
             title={value}
             operationKey={key as HalftoningFiltersKey}
           />
+        ))}
+      </Operations.Root>
+
+      <Operations.Root title="Detecção pontos e linhas">
+        {Object.entries(DOTS_LINES_DETECTION).map(([key, value]) => (
+          <Operations.Operation
+            key={key}
+            title={value}
+            operationKey={key as DotsLinesDetectionKey}
+          >
+            {anyImagesSelected && <Operations.Input placeholder="Threshold" />}
+          </Operations.Operation>
         ))}
       </Operations.Root>
     </>
