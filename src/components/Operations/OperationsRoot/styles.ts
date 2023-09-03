@@ -1,12 +1,37 @@
 import { borderColor } from 'constants/colors';
 import styled from 'styled-components';
 
+export const OperationsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-right: 8px;
+  padding-bottom: 2px;
+  gap: 12px;
+
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.28);
+    border-radius: 4px;
+  }
+`;
+
 export const Container = styled.section`
   display: flex;
   flex-direction: column;
   gap: 12px;
   padding-block: 8px;
-  padding-inline: 4px 8px;
+  padding-left: 4px;
 
   border-top: 2px solid ${borderColor};
   max-height: 28px;
@@ -32,10 +57,8 @@ export const Container = styled.section`
   }
 
   &:hover {
-    max-height: 400px;
+    max-height: 260px;
     padding-bottom: 16px;
-    overflow-y: scroll;
-    overflow-x: hidden;
 
     *:not(h4) {
       opacity: 1;
@@ -45,18 +68,5 @@ export const Container = styled.section`
 
   &:not(:hover) {
     transition-delay: 0.3s;
-  }
-
-  &::-webkit-scrollbar {
-    width: 4px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background-color: rgba(0, 0, 0, 0.1);
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.28);
-    border-radius: 4px;
   }
 `;
