@@ -10,4 +10,4 @@ export const LOW_PASS_FILTERS = {
   SOMBOONKAEW: 'Somboonkaew',
 } as const;
 
-export type LowPassFiltersKey = keyof typeof LOW_PASS_FILTERS;
+export type LowPassFilterKey = keyof typeof LOW_PASS_FILTERS;

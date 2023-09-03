@@ -9,4 +9,4 @@ export const HALFTONING_FILTERS = {
   STEVENSONE_ARCE: 'Stevensone Arce',
 } as const;
 
-export type HalftoningFiltersKey = keyof typeof HALFTONING_FILTERS;
+export type HalftoningFilterKey = keyof typeof HALFTONING_FILTERS;

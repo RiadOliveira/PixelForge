@@ -1,16 +1,20 @@
 import { Operations } from 'components/Operations';
 import { useImages } from 'hooks/images';
 import {
+  BORDERS_DETECTION,
+  BordersDetectionKey,
+} from 'types/operationsNames/bordersDetection';
+import {
   DOTS_LINES_DETECTION,
   DotsLinesDetectionKey,
 } from 'types/operationsNames/dotsLinesDetection';
 import {
   HALFTONING_FILTERS,
-  HalftoningFiltersKey,
+  HalftoningFilterKey,
 } from 'types/operationsNames/halftoningFilters';
 import {
   HIGH_PASS_FILTERS,
-  HighPassFiltersKey,
+  HighPassFilterKey,
 } from 'types/operationsNames/highPassFilters';
 import {
   HIGHLIGHTS,
@@ -18,7 +22,7 @@ import {
 } from 'types/operationsNames/highlight';
 import {
   LOW_PASS_FILTERS,
-  LowPassFiltersKey,
+  LowPassFilterKey,
 } from 'types/operationsNames/lowPassFilters';
 
 export const SecondOperationSection = () => {
@@ -47,7 +51,7 @@ export const SecondOperationSection = () => {
           <Operations.Operation
             key={key}
             title={value}
-            operationKey={key as LowPassFiltersKey}
+            operationKey={key as LowPassFilterKey}
           >
             {anyImagesSelected && (
               <Operations.Input placeholder="Tamanho da janela" />
@@ -61,7 +65,7 @@ export const SecondOperationSection = () => {
           <Operations.Operation
             key={key}
             title={value}
-            operationKey={key as HighPassFiltersKey}
+            operationKey={key as HighPassFilterKey}
           >
             {anyImagesSelected && key === 'HIGHT_BOOST' && (
               <Operations.Input placeholder="Fator de amplificação" />
@@ -75,12 +79,12 @@ export const SecondOperationSection = () => {
           <Operations.Operation
             key={key}
             title={value}
-            operationKey={key as HalftoningFiltersKey}
+            operationKey={key as HalftoningFilterKey}
           />
         ))}
       </Operations.Root>
 
-      <Operations.Root title="Detecção pontos e linhas">
+      <Operations.Root title="Detecção pontos/linhas">
         {Object.entries(DOTS_LINES_DETECTION).map(([key, value]) => (
           <Operations.Operation
             key={key}
@@ -89,6 +93,16 @@ export const SecondOperationSection = () => {
           >
             {anyImagesSelected && <Operations.Input placeholder="Threshold" />}
           </Operations.Operation>
+        ))}
+      </Operations.Root>
+
+      <Operations.Root title="Detecção bordas">
+        {Object.entries(BORDERS_DETECTION).map(([key, value]) => (
+          <Operations.Operation
+            key={key}
+            title={value}
+            operationKey={key as BordersDetectionKey}
+          />
         ))}
       </Operations.Root>
     </>

@@ -1,10 +1,10 @@
 import { OperationFunction } from 'types/operations/OperationFunction';
-import { HalftoningFiltersKey } from 'types/operationsNames/halftoningFilters';
+import { HalftoningFilterKey } from 'types/operationsNames/halftoningFilters';
 import { fillImagePixelWithSameValues } from 'utils/auxiliar/fillImagePixelWithSameValues';
 import { generateImageAndResultCanvasData } from 'utils/auxiliar/generateImageAndResultCanvasData';
 import { getGrayValueFromImagePixel } from 'utils/auxiliar/getGrayValueFromImagePixel';
 
-const PATTERNS_MATRICES: { [key in HalftoningFiltersKey]: number[][] } = {
+const PATTERNS_MATRICES: { [key in HalftoningFilterKey]: number[][] } = {
   DOTTED_ORDERED_2x2: [
     [0, 2],
     [3, 1],
@@ -45,9 +45,10 @@ const PATTERNS_MATRICES: { [key in HalftoningFiltersKey]: number[][] } = {
   ],
 };
 
-export const executeHalftoningFilter: OperationFunction<
-  HalftoningFiltersKey
-> = ([image], [{ key }]) => {
+export const executeHalftoningFilter: OperationFunction<HalftoningFilterKey> = (
+  [image],
+  [{ key }],
+) => {
   const { width, height } = image;
   const {
     originalImage: { imageData },

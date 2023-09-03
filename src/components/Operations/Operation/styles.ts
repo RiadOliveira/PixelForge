@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
+  min-height: 32px;
   max-height: 32px;
   overflow: hidden;
   cursor: pointer;
@@ -35,6 +36,7 @@ export const Container = styled.div`
   }
 
   &:focus-within {
+    min-height: 64px;
     max-height: 117px;
 
     span {

@@ -1,5 +1,5 @@
 import { getUpdatedPixelsForAverage } from './getUpdatedPixelsForAverage';
-import { LowPassFiltersKey } from 'types/operationsNames/lowPassFilters';
+import { LowPassFilterKey } from 'types/operationsNames/lowPassFilters';
 import { getUpdatedPixelsForMedian } from './getUpdatedPixelsForMedian';
 import { getUpdatedPixelsForMaximum } from './getUpdatedPixelsForMaximum';
 import { getUpdatedPixelsForMinimum } from './getUpdatedPixelsForMinimum';
@@ -19,7 +19,7 @@ type GetUpdatedPixelsFunction = (
 ) => number[];
 
 const GET_UPDATED_PIXELS_FUNCTIONS: {
-  [key in LowPassFiltersKey]: GetUpdatedPixelsFunction;
+  [key in LowPassFilterKey]: GetUpdatedPixelsFunction;
 } = {
   AVERAGE: getUpdatedPixelsForAverage,
   MEDIAN: getUpdatedPixelsForMedian,
@@ -32,7 +32,7 @@ const GET_UPDATED_PIXELS_FUNCTIONS: {
   SOMBOONKAEW: getUpdatedPixelsForSomboonkaew,
 };
 
-export const executeLowPassFilter: OperationFunction<LowPassFiltersKey> = (
+export const executeLowPassFilter: OperationFunction<LowPassFilterKey> = (
   [image],
   [
     {

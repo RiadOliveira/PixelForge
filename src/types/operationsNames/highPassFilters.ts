@@ -7,4 +7,4 @@ export const HIGH_PASS_FILTERS = {
   HIGHT_BOOST: 'Alto-reforço',
 } as const;
 
-export type HighPassFiltersKey = keyof typeof HIGH_PASS_FILTERS;
+export type HighPassFilterKey = keyof typeof HIGH_PASS_FILTERS;

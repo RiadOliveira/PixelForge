@@ -46,6 +46,7 @@ export const OperationPanel = () => {
       <OperationsContainer>
         <Section />
       </OperationsContainer>
+
       <ChangeSectionButton type="button" onClick={handleChangeSection}>
         {name}
       </ChangeSectionButton>

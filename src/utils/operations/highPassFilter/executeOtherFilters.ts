@@ -1,7 +1,7 @@
-import { HighPassFiltersKey } from 'types/operationsNames/highPassFilters';
+import { HighPassFilterKey } from 'types/operationsNames/highPassFilters';
 import { generateImageAndResultCanvasData } from 'utils/auxiliar/generateImageAndResultCanvasData';
 
-type OtherFiltersKey = Exclude<HighPassFiltersKey, 'HIGHT_BOOST'>;
+type OtherFiltersKey = Exclude<HighPassFilterKey, 'HIGHT_BOOST'>;
 
 const OPERATIONS_MASKS: {
   [key in OtherFiltersKey]: number[][];

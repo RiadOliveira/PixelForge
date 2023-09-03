@@ -5,8 +5,8 @@ export const Container = styled.section`
   display: flex;
   flex-direction: column;
   gap: 12px;
-  padding: 8px 4px;
-  overflow: hidden;
+  padding-block: 8px;
+  padding-inline: 4px 8px;
 
   border-top: 2px solid ${borderColor};
   max-height: 28px;
@@ -32,8 +32,10 @@ export const Container = styled.section`
   }
 
   &:hover {
-    max-height: 520px;
+    max-height: 400px;
     padding-bottom: 16px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 
     *:not(h4) {
       opacity: 1;
@@ -43,5 +45,18 @@ export const Container = styled.section`
 
   &:not(:hover) {
     transition-delay: 0.3s;
+  }
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.28);
+    border-radius: 4px;
   }
 `;

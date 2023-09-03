@@ -26,6 +26,8 @@ import { OperationKey } from 'types/operationsNames';
 import { OperationFunction } from 'types/operations/OperationFunction';
 import { DOTS_LINES_DETECTION } from 'types/operationsNames/dotsLinesDetection';
 import { executeDotsLinesDetection } from './dotsLinesDetection/executeDotsLinesDetection';
+import { BORDERS_DETECTION } from 'types/operationsNames/bordersDetection';
+import { executeBordersDetection } from './bordersDetection/executeBordersDetection';
 
 interface OperationFunctionMappedByKeys {
   operationKeys: OperationKey[];
@@ -88,6 +90,10 @@ const OPERATIONS_FUNCTIONS_MAPPED_BY_NAMES: OperationFunctionMappedByKeys[] = [
   {
     operationKeys: extractOperationKeys(DOTS_LINES_DETECTION),
     operationFunction: executeDotsLinesDetection,
+  },
+  {
+    operationKeys: extractOperationKeys(BORDERS_DETECTION),
+    operationFunction: executeBordersDetection,
   },
 ];
 

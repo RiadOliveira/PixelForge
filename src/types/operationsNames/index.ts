@@ -1,4 +1,5 @@
 import { ARITHMETICS_OPERATIONS } from './arithmetics';
+import { BORDERS_DETECTION } from './bordersDetection';
 import { DECOMPOSITIONS } from './decompositions';
 import { DOTS_LINES_DETECTION } from './dotsLinesDetection';
 import { HALFTONING_FILTERS } from './halftoningFilters';
@@ -26,6 +27,7 @@ export const OPERATIONS = {
   ...HIGH_PASS_FILTERS,
   ...HALFTONING_FILTERS,
   ...DOTS_LINES_DETECTION,
+  ...BORDERS_DETECTION,
 } as const;
 
 export type OperationKey = keyof typeof OPERATIONS;
