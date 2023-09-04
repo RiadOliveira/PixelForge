@@ -2,7 +2,7 @@ import { borderColor } from 'constants/colors';
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  min-width: 196px;
+  width: 196px;
   height: calc(100vh - 64px);
   position: sticky;
   top: 20px;

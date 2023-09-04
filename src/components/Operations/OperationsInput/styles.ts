@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 export const Container = styled.input`
   width: calc(100% - 16px);
-  height: 30px;
+  min-height: 30px;
+  max-height: 30px;
   font-size: 12px;
 
   &::-webkit-outer-spin-button,

@@ -20,6 +20,22 @@ export const Operation = ({
     useImages();
   const containerRef = useRef<HTMLDivElement>(null);
 
+  const handleOnBlur = useCallback(() => {
+    const { current } = containerRef;
+    if (!current) return;
+
+    current.style.minHeight = '32px';
+    current.style.maxHeight = '32px';
+  }, []);
+
+  const handleOnFocus = useCallback(() => {
+    const { current } = containerRef;
+    if (!current) return;
+
+    current.style.minHeight = current.scrollHeight + 'px';
+    current.style.maxHeight = current.scrollHeight + 'px';
+  }, []);
+
   const handleOnContainerClick = useCallback(() => {
     const { current } = containerRef;
     if (!current) return;
@@ -41,7 +57,13 @@ export const Operation = ({
   }, [operationKey, updateImagesWithOperationOnSelectedImages]);
 
   return (
-    <Container tabIndex={0} ref={containerRef} onClick={handleOnContainerClick}>
+    <Container
+      tabIndex={0}
+      ref={containerRef}
+      onClick={handleOnContainerClick}
+      onBlur={handleOnBlur}
+      onFocus={handleOnFocus}
+    >
       <span>{title}</span>
       {children}
 
