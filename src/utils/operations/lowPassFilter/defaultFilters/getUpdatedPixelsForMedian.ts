@@ -1,8 +1,8 @@
 export const getUpdatedPixelsForMedian = (
-  windowArray: number[],
   pixelIndex: number,
-  imageWidth: number,
+  { width: imageWidth }: HTMLCanvasElement,
   imageData: Uint8ClampedArray,
+  windowArray: number[],
 ) => {
   const pixelsValues = [] as number[];
 

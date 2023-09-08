@@ -24,6 +24,7 @@ import {
   LOW_PASS_FILTERS,
   LowPassFilterKey,
 } from 'types/operationsNames/lowPassFilters';
+import { isLowFilterEdgePreservingKey } from 'utils/auxiliar/isLowFilterEdgePreservingKey';
 
 export const SecondOperationSection = () => {
   const { selectedImages } = useImages();
@@ -53,9 +54,10 @@ export const SecondOperationSection = () => {
             title={value}
             operationKey={key as LowPassFilterKey}
           >
-            {anyImagesSelected && (
-              <Operations.Input placeholder="Tamanho da janela" />
-            )}
+            {anyImagesSelected &&
+              !isLowFilterEdgePreservingKey(key as LowPassFilterKey) && (
+                <Operations.Input placeholder="Tamanho da janela" />
+              )}
           </Operations.Operation>
         ))}
       </Operations.Root>

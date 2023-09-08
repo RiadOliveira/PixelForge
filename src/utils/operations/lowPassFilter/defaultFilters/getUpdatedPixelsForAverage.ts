@@ -1,8 +1,8 @@
 export const getUpdatedPixelsForAverage = (
-  windowArray: number[],
   pixelIndex: number,
-  imageWidth: number,
+  { width: imageWidth }: HTMLCanvasElement,
   imageData: Uint8ClampedArray,
+  windowArray: number[],
 ) => {
   let totalValue = 0;
   const windowLength = windowArray.length;

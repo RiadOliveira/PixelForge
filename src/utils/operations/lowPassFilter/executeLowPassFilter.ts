@@ -1,77 +1,33 @@
-import { getUpdatedPixelsForAverage } from './getUpdatedPixelsForAverage';
 import { LowPassFilterKey } from 'types/operationsNames/lowPassFilters';
-import { getUpdatedPixelsForMedian } from './getUpdatedPixelsForMedian';
-import { getUpdatedPixelsForMaximum } from './getUpdatedPixelsForMaximum';
-import { getUpdatedPixelsForMinimum } from './getUpdatedPixelsForMinimum';
-import { getUpdatedPixelsForMode } from './getUpdatedPixelsForMode';
 import { generateImageAndResultCanvasData } from 'utils/auxiliar/generateImageAndResultCanvasData';
-import { getUpdatedPixelsForKawahara } from './getUpdatedPixelsForKawahara';
-import { getUpdatedPixelsForTomitaTsuji } from './getUpdatedPixelsForTomitaTsuji';
-import { getUpdatedPixelsForNagaoeMatsuyama } from './getUpdatedPixelsForNagaoeMatsuyama';
-import { getUpdatedPixelsForSomboonkaew } from './getUpdatedPixelsForSomboonkaew';
 import { OperationFunction } from 'types/operations/OperationFunction';
-
-type GetUpdatedPixelsFunction = (
-  windowArray: number[],
-  pixelIndex: number,
-  imageWidth: number,
-  imageData: Uint8ClampedArray,
-) => number[];
-
-const GET_UPDATED_PIXELS_FUNCTIONS: {
-  [key in LowPassFilterKey]: GetUpdatedPixelsFunction;
-} = {
-  AVERAGE: getUpdatedPixelsForAverage,
-  MEDIAN: getUpdatedPixelsForMedian,
-  MAXIMUM: getUpdatedPixelsForMaximum,
-  MINIMUM: getUpdatedPixelsForMinimum,
-  MODE: getUpdatedPixelsForMode,
-  KAWAHARA: getUpdatedPixelsForKawahara,
-  TOMITA_TSUJI: getUpdatedPixelsForTomitaTsuji,
-  NAGAOE_MATSUYAMA: getUpdatedPixelsForNagaoeMatsuyama,
-  SOMBOONKAEW: getUpdatedPixelsForSomboonkaew,
-};
+import { handleEdgePreservingFilterPixelsUpdate } from './edgePreservingFilters/handleEdgePreservingFilterPixelsUpdate';
+import { handleLowPassDefaultFilterPixelsUpdate } from './defaultFilters/handleLowPassDefaultFilterPixelsUpdate';
+import { isLowFilterEdgePreservingKey } from 'utils/auxiliar/isLowFilterEdgePreservingKey';
 
 export const executeLowPassFilter: OperationFunction<LowPassFilterKey> = (
   [image],
-  [
-    {
-      key,
-      values: [filterSize],
-    },
-  ],
+  [{ key, values }],
 ) => {
   const {
     originalImage: { imageData },
     resultCanvas: { canvas, context, imageData: resultImageData },
   } = generateImageAndResultCanvasData(image);
 
-  const windowArray = generateWindowArray(filterSize);
-  const getUpdatedPixelsFunction = GET_UPDATED_PIXELS_FUNCTIONS[key];
+  const edgePreservingFilter = isLowFilterEdgePreservingKey(key);
+  const imagesDataArray = [resultImageData.data, imageData.data];
 
-  for (let ind = 0; ind < imageData.data.length; ind += 4) {
-    const updatedPixels = getUpdatedPixelsFunction(
-      windowArray,
-      ind,
-      image.width,
-      imageData.data,
+  if (edgePreservingFilter) {
+    handleEdgePreservingFilterPixelsUpdate(key, image, imagesDataArray);
+  } else {
+    handleLowPassDefaultFilterPixelsUpdate(
+      key,
+      image,
+      imagesDataArray,
+      values[0],
     );
-
-    updatedPixels.forEach((pixel, pixelIndex) => {
-      resultImageData.data[ind + pixelIndex] = pixel;
-    });
-    resultImageData.data[ind + 3] = imageData.data[ind + 3];
   }
 
   context.putImageData(resultImageData, 0, 0);
   return [canvas];
-};
-
-const generateWindowArray = (filterSize: number) => {
-  const halfFilterSize = Math.floor(filterSize / 2);
-
-  return Array.from(
-    { length: filterSize },
-    (_, index) => index - halfFilterSize,
-  );
 };

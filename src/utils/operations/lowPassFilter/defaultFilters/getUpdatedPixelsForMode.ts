@@ -1,10 +1,10 @@
 type FrequencyMap = { [key: string]: number };
 
 export const getUpdatedPixelsForMode = (
-  windowArray: number[],
   pixelIndex: number,
-  imageWidth: number,
+  { width: imageWidth }: HTMLCanvasElement,
   imageData: Uint8ClampedArray,
+  windowArray: number[],
 ) => {
   const colorFrequencyMap = {} as FrequencyMap;
 
