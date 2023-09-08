@@ -1,8 +1,8 @@
-import { RGBData } from 'types/RGBValuesData';
+const MIN_RGBA_VALUE = 0;
+const MAX_RGBA_VALUE = 255;
 
-export const MAX_RGBA_VALUE = 255;
-
-export const normalizeValue = (
-  valueToNormalize: number,
-  { min, max }: RGBData,
-) => (MAX_RGBA_VALUE / (max - min)) * (valueToNormalize - min);
+export const normalizeValue = (valueToNormalize: number) =>
+  Math.min(
+    Math.max(Math.abs(valueToNormalize), MIN_RGBA_VALUE),
+    MAX_RGBA_VALUE,
+  );

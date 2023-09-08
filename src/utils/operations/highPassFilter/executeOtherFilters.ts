@@ -1,5 +1,6 @@
 import { HighPassFilterKey } from 'types/operationsNames/highPassFilters';
 import { generateImageAndResultCanvasData } from 'utils/auxiliar/generateImageAndResultCanvasData';
+import { normalizeValue } from 'utils/auxiliar/normalizeValue';
 
 type OtherFiltersKey = Exclude<HighPassFilterKey, 'HIGHT_BOOST'>;
 
@@ -54,7 +55,7 @@ export const executeOtherFilters = (
     );
 
     convolvedPixels.forEach((pixel, i) => {
-      resultCanvasData.data[ind + i] = Math.min(255, Math.max(0, pixel));
+      resultCanvasData.data[ind + i] = normalizeValue(pixel);
     });
     resultCanvasData.data[ind + 3] = imageData[ind + 3];
   }

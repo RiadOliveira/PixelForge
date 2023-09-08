@@ -11,6 +11,7 @@ import {
   LINEAR_GRAYSCALE_OPERATIONS,
   LinearGrayscaleOperationKey,
 } from 'types/operationsNames/linearGrayScale';
+import { normalizeValue } from 'utils/auxiliar/normalizeValue';
 
 export const OperationsLinearGrayscale = () => {
   const inputsContainerRef = useRef<HTMLDivElement>(null);
@@ -41,8 +42,8 @@ export const OperationsLinearGrayscale = () => {
 
     const [min, max] = extractValuesFromInputsChildren(current);
     setOperationIntervals(previousIntervals => {
-      const parsedMin = Math.min(Math.max(Math.abs(min), 0), 255);
-      const parsedMax = Math.min(Math.max(Math.abs(max), 0), 255);
+      const parsedMin = normalizeValue(min);
+      const parsedMax = normalizeValue(max);
       const parsedInterval =
         parsedMin < parsedMax ? [parsedMin, parsedMax] : [parsedMax, parsedMin];
 
