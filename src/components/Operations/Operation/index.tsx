@@ -36,16 +36,6 @@ export const Operation = ({
     current.style.maxHeight = current.scrollHeight + 'px';
   }, []);
 
-  const handleOnContainerClick = useCallback(() => {
-    const { current } = containerRef;
-    if (!current) return;
-
-    setTimeout(() => {
-      const inputElements = current.getElementsByTagName('input');
-      inputElements.item(0)?.focus();
-    }, 300);
-  }, []);
-
   const handleOnButtonClick = useCallback(() => {
     const { current } = containerRef;
     if (!current) return;
@@ -60,7 +50,6 @@ export const Operation = ({
     <Container
       tabIndex={0}
       ref={containerRef}
-      onClick={handleOnContainerClick}
       onBlur={handleOnBlur}
       onFocus={handleOnFocus}
     >

@@ -12,6 +12,7 @@ import { NOT_LINEAR_GRAYSCALE_OPERATIONS } from './notLinearGrayScale';
 import { PSEUDOCOLORIZATION_OPERATIONS } from './pseudocolorization';
 import { TRANSFORMATIONS } from './transformations';
 import { ZOOM_OPERATIONS } from './zoom';
+import { THRESHOLDING_OPERATIONS } from './thresholding';
 
 export const OPERATIONS = {
   ...ARITHMETICS_OPERATIONS,
@@ -28,6 +29,7 @@ export const OPERATIONS = {
   ...HALFTONING_FILTERS,
   ...DOTS_LINES_DETECTION,
   ...BORDERS_DETECTION,
+  ...THRESHOLDING_OPERATIONS,
 } as const;
 
 export type OperationKey = keyof typeof OPERATIONS;

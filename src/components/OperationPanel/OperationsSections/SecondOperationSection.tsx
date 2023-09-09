@@ -24,6 +24,10 @@ import {
   LOW_PASS_FILTERS,
   LowPassFilterKey,
 } from 'types/operationsNames/lowPassFilters';
+import {
+  THRESHOLDING_OPERATIONS,
+  ThresholdingOperationKey,
+} from 'types/operationsNames/thresholding';
 import { isLowFilterEdgePreservingKey } from 'utils/auxiliar/isLowFilterEdgePreservingKey';
 
 export const SecondOperationSection = () => {
@@ -105,6 +109,26 @@ export const SecondOperationSection = () => {
             title={value}
             operationKey={key as BordersDetectionKey}
           />
+        ))}
+      </Operations.Root>
+
+      <Operations.Root title="Limiarização">
+        {Object.entries(THRESHOLDING_OPERATIONS).map(([key, value]) => (
+          <Operations.Operation
+            key={key}
+            title={value}
+            operationKey={key as ThresholdingOperationKey}
+          >
+            {anyImagesSelected && key !== 'GLOBAL' && (
+              <>
+                <Operations.Input placeholder="Tamanho da janela" />
+
+                {key === 'LOCAL_NIBLACK' && (
+                  <Operations.Input placeholder="Fator de ponderação" />
+                )}
+              </>
+            )}
+          </Operations.Operation>
         ))}
       </Operations.Root>
     </>

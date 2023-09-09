@@ -36,9 +36,6 @@ export const Container = styled.div`
   }
 
   &:focus-within {
-    min-height: 64px;
-    max-height: 117px;
-
     span {
       border-color: ${borderColor};
     }
