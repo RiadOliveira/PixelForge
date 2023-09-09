@@ -30,6 +30,8 @@ import { BORDERS_DETECTION } from 'types/operationsNames/bordersDetection';
 import { executeBordersDetection } from './bordersDetection/executeBordersDetection';
 import { THRESHOLDING_OPERATIONS } from 'types/operationsNames/thresholding';
 import { executeThresholdingOperation } from './thresholding/executeThresholdingOperation';
+import { REGION_SEGMENTATION } from 'types/operationsNames/regionSegmentation';
+import { executeRegionSegmentation } from './regionSegmentation/executeRegionSegmentation';
 
 interface OperationFunctionMappedByKeys {
   operationKeys: OperationKey[];
@@ -100,6 +102,10 @@ const OPERATIONS_FUNCTIONS_MAPPED_BY_NAMES: OperationFunctionMappedByKeys[] = [
   {
     operationKeys: extractOperationKeys(THRESHOLDING_OPERATIONS),
     operationFunction: executeThresholdingOperation,
+  },
+  {
+    operationKeys: extractOperationKeys(REGION_SEGMENTATION),
+    operationFunction: executeRegionSegmentation,
   },
 ];
 

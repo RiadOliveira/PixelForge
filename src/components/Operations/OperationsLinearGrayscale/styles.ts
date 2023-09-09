@@ -12,7 +12,7 @@ export const Container = styled.div`
   }
 
   input {
-    width: calc(100% - 8px);
+    width: calc(100% - 10px);
 
     border: 1px solid ${borderColor};
     border-radius: 4px;

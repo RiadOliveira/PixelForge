@@ -25,6 +25,10 @@ import {
   LowPassFilterKey,
 } from 'types/operationsNames/lowPassFilters';
 import {
+  REGION_SEGMENTATION,
+  RegionSegmentationKey,
+} from 'types/operationsNames/regionSegmentation';
+import {
   THRESHOLDING_OPERATIONS,
   ThresholdingOperationKey,
 } from 'types/operationsNames/thresholding';
@@ -126,6 +130,23 @@ export const SecondOperationSection = () => {
                 {key === 'LOCAL_NIBLACK' && (
                   <Operations.Input placeholder="Fator de ponderação" />
                 )}
+              </>
+            )}
+          </Operations.Operation>
+        ))}
+      </Operations.Root>
+
+      <Operations.Root title="Segmentação de regiões">
+        {Object.entries(REGION_SEGMENTATION).map(([key, value]) => (
+          <Operations.Operation
+            key={key}
+            title={value}
+            operationKey={key as RegionSegmentationKey}
+          >
+            {anyImagesSelected && (
+              <>
+                <Operations.Input placeholder="Threshold" />
+                <Operations.Input placeholder="Quantidade de seeds" />
               </>
             )}
           </Operations.Operation>

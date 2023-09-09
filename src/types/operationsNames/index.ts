@@ -13,6 +13,7 @@ import { PSEUDOCOLORIZATION_OPERATIONS } from './pseudocolorization';
 import { TRANSFORMATIONS } from './transformations';
 import { ZOOM_OPERATIONS } from './zoom';
 import { THRESHOLDING_OPERATIONS } from './thresholding';
+import { REGION_SEGMENTATION } from './regionSegmentation';
 
 export const OPERATIONS = {
   ...ARITHMETICS_OPERATIONS,
@@ -30,6 +31,7 @@ export const OPERATIONS = {
   ...DOTS_LINES_DETECTION,
   ...BORDERS_DETECTION,
   ...THRESHOLDING_OPERATIONS,
+  ...REGION_SEGMENTATION,
 } as const;
 
 export type OperationKey = keyof typeof OPERATIONS;

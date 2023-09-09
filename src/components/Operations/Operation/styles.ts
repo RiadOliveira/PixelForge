@@ -26,6 +26,11 @@ export const Container = styled.div`
     border-bottom: 1px solid transparent;
   }
 
+  input + input {
+    border-top: 1px solid ${borderColor};
+    padding-top: 8px;
+  }
+
   &:hover,
   &:focus-within {
     background-color: rgba(0, 0, 0, 0.04);

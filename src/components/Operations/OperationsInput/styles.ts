@@ -1,4 +1,3 @@
-import { borderColor } from 'constants/colors';
 import styled from 'styled-components';
 
 export const Container = styled.input`
@@ -24,10 +23,5 @@ export const Container = styled.input`
 
   &:disabled {
     opacity: 0.6 !important;
-  }
-
-  & + & {
-    padding-top: 8px;
-    border-top: 1px solid ${borderColor};
   }
 `;
