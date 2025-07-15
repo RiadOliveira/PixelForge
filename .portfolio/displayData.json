@@ -1,0 +1,29 @@
+{
+  "title": "PixelForge",
+  "extendedDescription": "PixelForge is a comprehensive web-based platform developed for Digital Image Processing coursework. Built with React and leveraging HTML5 Canvas, it provides an interactive environment to perform advanced image manipulations, transformations, and analysis.",
+  "imageId": "b3559b39-b4c6-4f14-86b4-95415caf090f",
+  "highlightColor": "pink",
+  "technologies": [
+    "React",
+    "TypeScript",
+    "StyledComponents"
+  ],
+  "attachmentsUrl": true,
+  "features": [
+    {
+      "name": "Image Operations",
+      "description": "Multi-format image support with arithmetic and logical operations.",
+      "icon": "image"
+    },
+    {
+      "name": "Enhancement",
+      "description": "Image enhancement with histogram equalization, gamma correction, and filtering techniques.",
+      "icon": "adjust"
+    },
+    {
+      "name": "Segmentation",
+      "description": "Edge detection, thresholding, and region-based segmentation.",
+      "icon": "searchPlus"
+    }
+  ]
+}
