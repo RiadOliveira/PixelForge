@@ -4,6 +4,7 @@
   PixelForge is a comprehensive web-based platform developed for Digital Image Processing coursework. Built with React and leveraging HTML5 Canvas, it provides an interactive environment to perform advanced image manipulations, transformations, and analysis.
 </p>
 
+![image](https://github.com/user-attachments/assets/b3559b39-b4c6-4f14-86b4-95415caf090f)
 ![image](https://img.shields.io/github/license/RiadOliveira/PixelForge)
 
 <br/>
@@ -132,7 +133,13 @@ $ npm start
 
 <h2 id="screenshots">📷 Application Screenshots</h2>
 
-[image](to-be-defined)
+![image](https://github.com/user-attachments/assets/98ee2a87-283c-4b34-b852-e3171f3a0549)
+![image](https://github.com/user-attachments/assets/a67cc46d-4b29-4f1f-aad6-4a9ba5529bd3)
+![image](https://github.com/user-attachments/assets/052b716b-1cd1-4c3a-82b7-a15dba843bc4)
+![image](https://github.com/user-attachments/assets/326101f7-c306-4e06-8e55-80c7cc16e6c5)
+![image](https://github.com/user-attachments/assets/b3559b39-b4c6-4f14-86b4-95415caf090f)
+![image](https://github.com/user-attachments/assets/d3163500-bd9d-48f7-bc83-1923a524e399)
+![image](https://github.com/user-attachments/assets/403ce42c-d759-4da6-860a-63cfc19285be)
 
 <h2 id="license">📝 License</h2>
 This project is MIT Licensed. See <a href="https://github.com/RiadOliveira/PixelForge/blob/main/LICENSE">LICENSE</a> file for more details.
