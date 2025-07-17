@@ -4,8 +4,8 @@
   PixelForge is a comprehensive web-based platform developed for Digital Image Processing coursework. Built with React and leveraging HTML5 Canvas, it provides an interactive environment to perform advanced image manipulations, transformations, and analysis.
 </p>
 
-![image](https://github.com/user-attachments/assets/b3559b39-b4c6-4f14-86b4-95415caf090f)
-![image](https://img.shields.io/github/license/RiadOliveira/PixelForge)
+![Preview](https://github.com/user-attachments/assets/b3559b39-b4c6-4f14-86b4-95415caf090f)
+![License](https://img.shields.io/github/license/RiadOliveira/PixelForge)
 
 <br/>
 
@@ -133,13 +133,13 @@ $ npm start
 
 <h2 id="screenshots">📷 Application Screenshots</h2>
 
-![image](https://github.com/user-attachments/assets/98ee2a87-283c-4b34-b852-e3171f3a0549)
-![image](https://github.com/user-attachments/assets/a67cc46d-4b29-4f1f-aad6-4a9ba5529bd3)
-![image](https://github.com/user-attachments/assets/052b716b-1cd1-4c3a-82b7-a15dba843bc4)
-![image](https://github.com/user-attachments/assets/326101f7-c306-4e06-8e55-80c7cc16e6c5)
-![image](https://github.com/user-attachments/assets/b3559b39-b4c6-4f14-86b4-95415caf090f)
-![image](https://github.com/user-attachments/assets/d3163500-bd9d-48f7-bc83-1923a524e399)
-![image](https://github.com/user-attachments/assets/403ce42c-d759-4da6-860a-63cfc19285be)
+![Screenshot_1](https://github.com/user-attachments/assets/98ee2a87-283c-4b34-b852-e3171f3a0549)
+![Screenshot_2](https://github.com/user-attachments/assets/a67cc46d-4b29-4f1f-aad6-4a9ba5529bd3)
+![Screenshot_3](https://github.com/user-attachments/assets/052b716b-1cd1-4c3a-82b7-a15dba843bc4)
+![Screenshot_4](https://github.com/user-attachments/assets/326101f7-c306-4e06-8e55-80c7cc16e6c5)
+![Screenshot_5](https://github.com/user-attachments/assets/b3559b39-b4c6-4f14-86b4-95415caf090f)
+![Screenshot_6](https://github.com/user-attachments/assets/d3163500-bd9d-48f7-bc83-1923a524e399)
+![Screenshot_7](https://github.com/user-attachments/assets/403ce42c-d759-4da6-860a-63cfc19285be)
 
 <h2 id="license">📝 License</h2>
 This project is MIT Licensed. See <a href="https://github.com/RiadOliveira/PixelForge/blob/main/LICENSE">LICENSE</a> file for more details.
@@ -159,7 +159,8 @@ This project is MIT Licensed. See <a href="https://github.com/RiadOliveira/Pixel
 ## 🌐 Socials
 
 <div id="socials">
-  <a href = "mailto:riad.oliveira@hotmail.com"><img class="badge" src="https://img.shields.io/badge/Microsoft_Outlook-0078D4?style=for-the-badge&logo=microsoft-outlook&logoColor=white" target="_blank"/></a>
-  <a href = "mailto:riad.oliveira@gmail.com"><img class="badge" src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"/></a>
-  <a href="https://www.linkedin.com/in/ríad-oliveira" target="_blank"><img class="badge" src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"/></a>
+  <a href="https://portfolio-riadoliveira.vercel.app"><img class="badge" src="https://img.shields.io/badge/Portfolio-%23000000.svg?style=for-the-badge&logo=firefox&logoColor=#FF7139" alt="Portfolio" target="_blank"></a>
+  <a href = "mailto:riad.oliveira@hotmail.com"><img class="badge" src="https://img.shields.io/badge/Microsoft_Outlook-0078D4?style=for-the-badge&logo=microsoft-outlook&logoColor=white" alt="E-mail" target="_blank"/></a>
+  <a href = "mailto:riad.oliveira@gmail.com"><img class="badge" src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail" target="_blank"/></a>
+  <a href="https://www.linkedin.com/in/ríad-oliveira" target="_blank"><img class="badge" src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="Linkedin" target="_blank"/></a>
 </div>
