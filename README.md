@@ -14,7 +14,8 @@
 * [🛠️ Technologies](#technologies)
 * [🚀 Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
-  * [Installation & Setup](#setup)
+  * [Live Demo](#demo)
+  * [Local Setup](#setup)
 * [⚙️ Features](#features)
   * [Basic Image Operations](#basic-ops)
   * [Geometric Transformations](#geo-transforms)
@@ -46,7 +47,11 @@ Before running the application, ensure you have:
 * [Git](https://git-scm.com/)
 * [Node.js](https://nodejs.org/)
 
-<h3 id="setup">Installation & Setup</h3>
+<h3 id="demo">Live Demo</h3>
+The application is hosted on Vercel and can be accessed directly:
+<a href="https://pixelforge-riadoliveira.vercel.app">https://pixelforge-riadoliveira.vercel.app</a>
+
+<h3 id="setup">Local Setup</h3>
 
 ```bash
 # Clone the repository
@@ -61,6 +66,8 @@ $ npm install
 # Start the development server
 $ npm start
 ```
+
+<br/>
 
 <h2 id="features">⚙️ Features</h2>
 
