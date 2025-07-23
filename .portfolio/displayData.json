@@ -5,6 +5,7 @@
   "highlightColor": "pink",
   "technologies": [
     "React",
+    "Vite",
     "TypeScript",
     "StyledComponents"
   ],
