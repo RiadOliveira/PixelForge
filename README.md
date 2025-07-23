@@ -49,7 +49,7 @@ Before running the application, ensure you have:
 
 <h3 id="demo">Live Demo</h3>
 The application is hosted on Vercel and can be accessed directly:
-<a href="https://pixelforge-riadoliveira.vercel.app">https://pixelforge-riadoliveira.vercel.app</a>
+<a href="https://pixelforge-riadoliveira.vercel.app">https://pixelforge-riadoliveira.vercel.app</a>.
 
 <h3 id="setup">Local Setup</h3>
 
